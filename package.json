@@ -1,0 +1,41 @@
+{
+	"name": "WEBJS",
+	"version": "1.0.0",
+	"private": true,
+	"description": "De firma Dn Oetel heeft een klein warenhuis waar veel carnavals producten zijn opgeslagen voor de consumenten verkoop. Het bijhouden van alle producten gaat niet altijd even vlekkeloos. Dat kan verschillende redenen hebben, kapotte producten, niet compleet geleverde producten of producten die via andere kanalen worden verkocht. De vraag is, maak een (simpel) voorraadregistratie systeem.",
+	"main": "index.js",
+	"scripts": {
+		"start": "webpack-dev-server --config webpack.dev.js --open",
+		"build": "webpack --config webpack.prod.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/A3vk/WEBJS.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/A3vk/WEBJS/issues"
+	},
+	"homepage": "https://github.com/A3vk/WEBJS#readme",
+	"devDependencies": {
+		"bootstrap": "^4.4.1",
+		"clean-webpack-plugin": "^3.0.0",
+		"css-loader": "^3.4.2",
+		"file-loader": "^5.1.0",
+		"html-loader": "^0.5.5",
+		"html-webpack-plugin": "^3.2.0",
+		"jquery": "^3.4.1",
+		"mini-css-extract-plugin": "^0.9.0",
+		"node-sass": "^4.13.1",
+		"optimize-css-assets-webpack-plugin": "^5.0.3",
+		"popper.js": "^1.16.1",
+		"sass-loader": "^8.0.2",
+		"style-loader": "^1.1.3",
+		"webpack": "^4.42.0",
+		"webpack-cli": "^3.3.11",
+		"webpack-dev-server": "^3.10.3",
+		"webpack-merge": "^4.2.2"
+	}
+}
