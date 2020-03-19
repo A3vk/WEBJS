@@ -1,3 +1,3 @@
 import WizardController from './controllers/wizard-controller';
 
-let controller = new WizardController();
+let controller = new WizardController('Beautification');

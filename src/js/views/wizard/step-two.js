@@ -1,25 +1,29 @@
 import WizardView from './wizard-view';
 
 export default class StepTwo extends WizardView {
-	render(container) {
-		container.innerHTML = '';
+	render() {
+		let inputs = [];
 
-		let label = document.createElement('label');
-		label.innerHTML = 'Wat is je naam?';
+		let minimalStockLabel = document.createElement('label');
+		minimalStockLabel.innerHTML = 'Minimale voorraad';
+		inputs.push(minimalStockLabel);
 
-		let input = document.createElement('input');
-		input.className = 'form-control';
+		let minimalStockInput = document.createElement('input');
+		minimalStockInput.className = 'form-control';
+		minimalStockInput.type = 'number';
+		minimalStockInput.min = 0;
+		inputs.push(minimalStockInput);
 
-		let button = document.createElement('button');
-		button.innerHTML = 'Volgende stap';
-		button.className = 'btn btn-primary';
+		let stockLabel = document.createElement('label');
+		stockLabel.innerHTML = 'Huidige voorrad';
+		inputs.push(stockLabel);
 
-		button.addEventListener('click', () => {
-			this.onNext(input.value);
-		});
+		let stockInput = document.createElement('input');
+		stockInput.className = 'form-control';
+		stockInput.type = 'number';
+		stockInput.min = 0;
+		inputs.push(stockInput);
 
-		container.appendChild(label);
-		container.appendChild(input);
-		container.appendChild(button);
+		super.render(inputs);
 	}
 }

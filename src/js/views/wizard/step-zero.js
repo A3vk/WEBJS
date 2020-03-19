@@ -1,25 +1,25 @@
 import WizardView from './wizard-view';
 
 export default class StepZero extends WizardView {
-	render(container) {
-		container.innerHTML = '';
+	render() {
+		let inputs = [];
 
-		let label = document.createElement('label');
-		label.innerHTML = 'Wat is de naam?';
+		let nameLabel = document.createElement('label');
+		nameLabel.innerHTML = 'Naam';
+		inputs.push(nameLabel);
 
-		let input = document.createElement('input');
-		input.className = 'form-control';
+		let nameInput = document.createElement('input');
+		nameInput.className = 'form-control';
+		inputs.push(nameInput);
 
-		let button = document.createElement('button');
-		button.innerHTML = 'Volgende stap';
-		button.className = 'btn btn-primary';
+		let descriptionLabel = document.createElement('label');
+		descriptionLabel.innerHTML = 'Beschrijving';
+		inputs.push(descriptionLabel);
 
-		button.addEventListener('click', () => {
-			this.onNext(input.value);
-		});
+		let descriptionInput = document.createElement('textarea');
+		descriptionInput.className = 'form-control';
+		inputs.push(descriptionInput);
 
-		container.appendChild(label);
-		container.appendChild(input);
-		container.appendChild(button);
+		super.render(inputs);
 	}
 }
