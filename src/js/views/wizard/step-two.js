@@ -1,11 +1,11 @@
 import WizardView from './wizard-view';
 
-export default class StepZero extends WizardView {
+export default class StepTwo extends WizardView {
 	render(container) {
 		container.innerHTML = '';
 
 		let label = document.createElement('label');
-		label.innerHTML = 'Wat is de naam?';
+		label.innerHTML = 'Wat is je naam?';
 
 		let input = document.createElement('input');
 		input.className = 'form-control';

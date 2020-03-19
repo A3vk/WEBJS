@@ -4,12 +4,8 @@ export default class StepOne extends WizardView {
 	render(container) {
 		container.innerHTML = '';
 
-		let div = document.createElement('div');
-		div.innerHTML = 'Stap: 1';
-		div.className = 'step-counter';
-
 		let label = document.createElement('label');
-		label.innerHTML = 'Wat is je naam?';
+		label.innerHTML = 'Wat is de beschrijving?';
 
 		let input = document.createElement('input');
 		input.className = 'form-control';
@@ -22,7 +18,6 @@ export default class StepOne extends WizardView {
 			this.onNext(input.value);
 		});
 
-		container.appendChild(div);
 		container.appendChild(label);
 		container.appendChild(input);
 		container.appendChild(button);
