@@ -1,5 +1,5 @@
-import Controller from './controller.js';
-import View from  './view.js';
+import Controller from './gridController.js';
+import View from  './gridView.js';
 
 
-const app = new Controller(new View());
+const app = new Controller();

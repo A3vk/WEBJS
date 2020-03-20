@@ -1,4 +1,4 @@
-export default class View{
+export default class GridView{
     constructor(){
         this.gridContainers = document.querySelectorAll('.grid-container');
 
@@ -21,12 +21,6 @@ export default class View{
     
         return element;
       }
-    
-
-    getElement(selector){
-        const element = document.querySelector(selector);
-        return element;
-    }
 }
 
 
