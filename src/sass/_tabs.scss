@@ -19,6 +19,12 @@
         border-width: 4px 2px 4px 2px;
     }
 
+    button.active{
+        background-color: $white;
+        color: $blue;
+        border-bottom: none;
+    }
+
     .btn-left{
         border-top-left-radius: 25px;
         border-left-width: 4px;
@@ -27,11 +33,5 @@
     .btn-right{
         border-top-right-radius: 25px;
         border-right-width: 4px;
-    }
-
-    button.active{
-        background-color: $white;
-        color: $blue;
-        border-bottom: none;
     }
 }
