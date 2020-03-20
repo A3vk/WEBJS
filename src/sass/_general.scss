@@ -1,59 +1,6 @@
-body {
+html body {
 	padding: 0 50px;
+	margin-top: 25px;
 }
 
-.utility-container{
-	// background-color: red;
-	justify-content: center;
-	padding-top: 50px;
 
-	.api-container{
-		background-color: blue;
-		width: 100%;
-		height: 45%;
-		margin-left: auto;
-		margin-right: auto;
-		padding-bottom: 10px;
-	}
-	
-	.product-selector{
-		background-color: purple;
-		width: 100%;
-		height: 10%;
-		margin-left: auto;
-		margin-right: auto;
-		padding-bottom: 10px;
-	}
-
-	.wizard-container{
-		background-color: green;
-		width: 100%;
-		height: 45%;
-		margin-left: auto;
-		margin-right: auto;
-	}
-}
-
-.grid-container{
-	// background-color: salmon;
-	padding-top: 50px;
-	
-	.grid-square{
-		// background-color: springgreen;
-		border-style: solid;
-		border-width: 1px;
-		min-width: 55px;
-		min-height: 55px;
-		max-height: 55px;
-		max-width: 55px;
-	}
-	.grid-square-blocked{
-		border-style: solid;
-		border-width: 1px;
-		min-width: 55px;
-		min-height: 55px;
-		max-height: 55px;
-		max-width: 55px;
-		background-image: linear-gradient(45deg, #f1c40f 25%, #e74c3c 25%, #e74c3c 50%, #f1c40f 50%, #f1c40f 75%, #e74c3c 75%, #e74c3c 100%);
-	}
-}
