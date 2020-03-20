@@ -8,28 +8,28 @@
 </head>
 
 <body class="container-flued">
-  <ul class="nav nav-tabs nav-justified md-tabs indigo" id="myTabJust" role="tablist">
+  <div>
+  <ul class="nav  nav-justified tab-list" id="myTabJust" role="tablist">
     <li class="nav-item custom-tab">
-      <a class="nav-link active tab-text" id="kleding-tab-just" data-toggle="tab" href="#kleding-just" role="tab"
-        aria-controls="kleding-just" aria-selected="true">Kleding</a>
+      <button class="nav-link active btn-left" id="clothing-tab">Kleding</button>
     </li>
     <li class="nav-item custom-tab">
-      <a class="nav-link tab-text" id="tierlatijn-tab-just" data-toggle="tab" href="#tierlatijn-just" role="tab"
-        aria-controls="tierlatijn-just" aria-selected="false">Tierlatijn</a>
+      <button class="nav-link active" id="beautification-tab">Tierlatijn</button>
     </li>
     <li class="nav-item custom-tab">
-      <a class="nav-link tab-text" id="decoratie-tab-just" data-toggle="tab" href="#decoratie-just" role="tab"
-        aria-controls="decoratie-just" aria-selected="false">Decoratie</a>
+      <button class="nav-link active btn-right" id="decoration-tab">Decoratie</button>
     </li>
   </ul>
-
-  <div class="tab-content row" id="myTabContentJust">
-    <div class="tab-pane fade show active col-md-7" id="kleding-just" role="tabpanel" aria-labelledby="kleding-tab-just">
-      <div class="grid-container">
-
-      </div>
+  <div class="row content">
+    <div class="grid-container col-md-6"></div>
+    <div class="utility-container col-md-5">
+      <div class="weather-container">weather</div>
+      <div class="product-selector">selector</div>
+      <div class="wizard-container">wizzard</div>
     </div>
-    <div class="tab-pane fade col-md-7" id="tierlatijn-just" role="tabpanel" aria-labelledby="tierlatijn-tab-just">
+
+
+    <!-- <div class="tab-pane fade col-md-7" id="tierlatijn-just" role="tabpanel" aria-labelledby="tierlatijn-tab-just">
       <div class="grid-container">
 
       </div>
@@ -39,12 +39,8 @@
 
       </div>
     </div>
-    <div class="utility-container col-md-5">
-      <div class="weather-container">weather</div>
-      <div class="product-selector">selector</div>
-      <div class="wizard-container">wizzard</div>
-    </div>
-  </div>
+   
+  </div> -->
 </body>
 
 </html>

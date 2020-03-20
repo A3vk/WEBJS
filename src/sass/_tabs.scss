@@ -1,16 +1,25 @@
-.custom-tab{
-    justify-content: center;
-    background-color: $blue;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 25px;
+.tab-list{
+    width: 100%;
+    button{
+        justify-content: center;
+        background-color: $blue;
+        border-style: solid;
+        border-width: 1px;
 
-    .tab-text{
         color: white;
         height: 75px;
         padding-top: 20px;
         text-align: center;
         font-weight: bold;
         font-size: larger;
+        width: 100%;
+    }
+
+    .btn-left{
+        border-top-left-radius: 25px;
+    }
+
+    .btn-right{
+        border-top-right-radius: 25px;
     }
 }
