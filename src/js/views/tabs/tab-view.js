@@ -36,19 +36,17 @@ export default class TabView{
 
         this.tabs = document.querySelectorAll('.tab-list > li > button')
 
-        this.tabs[0].className = 'active btn-left';
+        this.tabs[0].className = 'btn-left';
         this.tabs[this.max].className = 'btn-right';
         
         for (let i = 0; i < this.tabs.length; i++) {
             this.tabs[i].addEventListener('click', () => {
                 this.tab = document.querySelector('button.active');
                 this.tab.classList.remove('active')
-
                 this.tabs[i].classList.add('active');
 
                 this.switchTab(this.tabs[i].id);
             });
-            
         }
     }
 }
