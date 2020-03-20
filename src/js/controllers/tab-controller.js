@@ -13,8 +13,8 @@ export default class TabController{
         this.tabView.switchTab = (data) => {
             this.currentTab = data;
         };
+
         this.tabView.render(this.types);
-        this.tabView.switchTab(this.types[0]);
         console.dir(this.currentTab);
     }
 }
