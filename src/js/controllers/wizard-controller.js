@@ -8,9 +8,11 @@ import StepBeautification from '../views/wizard/step-beautification';
 import StepConfirmation from '../views/wizard/step-confirmation';
 
 export default class WizardController {
-	constructor(tab) {
-		this.product = new Product();
-		this.product.type = tab;
+	constructor(tab, warehouseController) {
+		this.tab = tab;
+		this.warehouseController = warehouseController;
+
+		this.product = new Product(this.tab);
 
 		this.views = [];
 
@@ -18,15 +20,14 @@ export default class WizardController {
 		this.views[1] = new StepOne();
 		this.views[2] = new StepTwo();
 
-		this.tab = tab;
 		switch (this.tab) {
-			case 'Clothing':
+			case 'clothing':
 				this.views[3] = new StepClothing();
 				break;
-			case 'Decoration':
+			case 'decoration':
 				this.views[3] = new StepDecoration();
 				break;
-			case 'Beautification':
+			case 'beautification':
 				this.views[3] = new StepBeautification();
 				break;
 		}
@@ -57,14 +58,14 @@ export default class WizardController {
 					break;
 				case 3:
 					switch (this.tab) {
-						case 'Kleding':
+						case 'clothing':
 							this.product.color = data[0];
 							this.product.size = data[1];
 							break;
-						case 'Decoratie':
+						case 'decoration':
 							this.product.weight = Math.round(data[0] * 100) / 100;
 							break;
-						case 'Tierlantijn':
+						case 'beautification':
 							this.product.size =
 								Math.round(data[0] * 100) / 100 +
 								' X ' +
@@ -83,7 +84,7 @@ export default class WizardController {
 				this.next();
 			} else {
 				// Save the product
-				console.log(this.product);
+				this.warehouseController.saveProduct(this.product);
 
 				// Reset the wizard
 				this.reset();
@@ -92,8 +93,7 @@ export default class WizardController {
 	}
 
 	reset() {
-		this.product = new Product();
-		this.product.type = this.tab;
+		this.product = new Product(this.tab);
 		this.counter = 0;
 		this.next();
 	}
