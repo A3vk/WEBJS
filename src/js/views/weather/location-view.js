@@ -29,5 +29,7 @@ export default class LocationView {
 	changeToError() {
 		let label = document.querySelector('.current-location');
 		label.innerText = 'Locatie: Geen gledige locatie';
+		let input = document.querySelector('.search-bar');
+		input.value = '';
 	}
 }

@@ -74,8 +74,9 @@
 
 		.temperature {
 			font-size: x-large;
-			padding: 10px 0 0 7px;
+			padding: 10px 0 0 2px;
 			text-align: right;
+			width: 54px;
 
 			.high {
 				color: $green;
