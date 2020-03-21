@@ -4,8 +4,8 @@ export default class Warehouse {
 	constructor(type) {
 		this.type = type;
 		this.products = [];
-		this. warehouse = [];
 
+		// Get the warehouse data
 		let data = JSON.parse(localStorage.getItem(storageKey));
 		this.warehouse = data[this.type].warehouse;
 	}
@@ -22,4 +22,6 @@ export default class Warehouse {
 		data[this.type].products = productsData;
 		localStorage.setItem(storageKey, JSON.stringify(data));
 	}
+
+	getWarehouse() {}
 }

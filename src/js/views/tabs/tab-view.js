@@ -1,47 +1,48 @@
-export default class TabView{
-    constructor(types){
-         this.types = types;
-    }
-    render(){
-        let tabList = document.querySelector('.tab-list')
+export default class TabView {
+	constructor(types) {
+		this.types = types;
+	}
 
-        this.types.forEach(type => {
-            let li = document.createElement('li');
-            li.className = 'nav-item';
+	render() {
+		let tabList = document.querySelector('.tab-list');
 
-            let button = document.createElement('button');
-            button.value = type;
+		this.types.forEach((type) => {
+			let li = document.createElement('li');
+			li.className = 'nav-item';
 
-            switch (type) {
-                case 'clothing':
-                    button.innerText = 'Kleding';
-                    button.className = 'active btn-left';
-                    this.switchTab(button.value);
-                    break;
+			let button = document.createElement('button');
+			button.value = type;
 
-                case 'decoration':
-                    button.innerText = 'Decoratie';
-                    break;
+			switch (type) {
+				case 'clothing':
+					button.innerText = 'Kleding';
+					button.className = 'active btn-left';
+					this.switchTab(button.value);
+					break;
 
-                case 'beautification':
-                    button.innerText = 'Tierelantijn';
-                    button.className = 'btn-right';
-                    break;
+				case 'decoration':
+					button.innerText = 'Decoratie';
+					break;
 
-                default:
-                    break;
-            }
+				case 'beautification':
+					button.innerText = 'Tierelantijn';
+					button.className = 'btn-right';
+					break;
 
-            button.addEventListener('click', () => {
-                let tab = document.querySelector('button.active');
-                tab.classList.remove('active');
-                button.classList.add('active')
+				default:
+					break;
+			}
 
-                this.switchTab(button.value);
-            })
+			button.addEventListener('click', () => {
+				let tab = document.querySelector('button.active');
+				tab.classList.remove('active');
+				button.classList.add('active');
 
-            li.append(button);
-            tabList.append(li);
-        });
-    }
+				this.switchTab(button.value);
+			});
+
+			li.append(button);
+			tabList.append(li);
+		});
+	}
 }

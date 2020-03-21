@@ -11,10 +11,8 @@ export default class WizardController {
 	constructor(type, warehouseController) {
 		this.warehouseController = warehouseController;
 
-		this.product = new Product(this.type);
-
 		this.switchWarehouse(type);
-		
+
 		this.container = document.querySelector('.wizard');
 		this.counter = 0;
 		this.next();
@@ -38,7 +36,7 @@ export default class WizardController {
 					this.product.stock = Math.round(data[1]);
 					break;
 				case 3:
-					switch (this.tab) {
+					switch (this.type) {
 						case 'clothing':
 							this.product.color = data[0];
 							this.product.size = data[1];
@@ -66,7 +64,6 @@ export default class WizardController {
 			} else {
 				// Save the product
 				this.warehouseController.saveProduct(this.product);
-
 				// Reset the wizard
 				this.reset();
 			}
@@ -74,7 +71,7 @@ export default class WizardController {
 	}
 
 	reset() {
-		this.product = new Product(this.tab);
+		this.product = new Product(this.type);
 		this.counter = 0;
 		this.next();
 	}
