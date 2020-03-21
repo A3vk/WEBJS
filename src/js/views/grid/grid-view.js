@@ -1,6 +1,5 @@
 export default class GridView {
 	constructor(grid) {
-		console.dir(grid);
 		this.gridContainer = document.querySelector('.grid-container');
 		this.gridContainer.innerHTML = '';
 

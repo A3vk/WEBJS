@@ -1,6 +1,7 @@
 export default class CurrentView {
 	render(data) {
 		let container = document.querySelector('.weather-container');
+		container.innerHTML = '';
 
 		let topDiv = document.createElement('div');
 		topDiv.className = 'top';
@@ -13,11 +14,11 @@ export default class CurrentView {
 
 		let highDiv = document.createElement('div');
 		highDiv.className = 'high';
-		highDiv.innerText = '24℃';
+		highDiv.innerText = `${data.temperature.max}℃`;
 
 		let lowDiv = document.createElement('div');
 		lowDiv.className = 'low';
-		lowDiv.innerText = '7℃';
+		lowDiv.innerText = `${data.temperature.min}℃`;
 
 		temperatureDiv.appendChild(highDiv);
 		temperatureDiv.appendChild(lowDiv);
@@ -28,12 +29,12 @@ export default class CurrentView {
 
 		let conditionImg = document.createElement('img');
 		conditionImg.className = 'icon';
-		conditionImg.src = 'http://openweathermap.org/img/wn/10d@2x.png';
-		conditionImg.alt = 'regen overdag';
+		conditionImg.src = `http://openweathermap.org/img/wn/${data.condition.icon}@2x.png`;
+		conditionImg.alt = data.condition.description;
 
 		let descriptionDiv = document.createElement('div');
 		descriptionDiv.className = 'description';
-		descriptionDiv.innerText = 'Lichte regen';
+		descriptionDiv.innerText = data.condition.description;
 
 		conditionDiv.appendChild(conditionImg);
 		conditionDiv.appendChild(descriptionDiv);

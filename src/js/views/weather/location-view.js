@@ -1,5 +1,5 @@
 export default class LocationView {
-	render() {
+	render(location) {
 		let container = document.querySelector('.weather-container .top');
 
 		let locationDiv = document.createElement('div');
@@ -7,7 +7,7 @@ export default class LocationView {
 
 		let locationLabel = document.createElement('label');
 		locationLabel.className = 'current-location';
-		locationLabel.innerText = 'Locatie: Waalwijk';
+		locationLabel.innerText = `Locatie: ${location}`;
 
 		let locationInput = document.createElement('input');
 		locationInput.className = 'search-bar';
@@ -16,12 +16,18 @@ export default class LocationView {
 		locationButton.className = 'btn btn-primary';
 		locationButton.innerText = 'Zoek';
 		locationButton.addEventListener('click', () => {
-			console.log('ZOEK LOCATIE');
+			let value = document.querySelector('.search-bar').value;
+			this.changeLocation(value);
 		});
 
 		locationDiv.appendChild(locationLabel);
 		locationDiv.appendChild(locationInput);
 		locationDiv.appendChild(locationButton);
 		container.appendChild(locationDiv);
+	}
+
+	changeToError() {
+		let label = document.querySelector('.current-location');
+		label.innerText = 'Locatie: Geen gledige locatie';
 	}
 }

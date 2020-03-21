@@ -9,28 +9,16 @@ export default class ForecastView {
 		forecastTable.className = 'forecast-table';
 
 		let thead = document.createElement('thead');
-
-		let dateTr = document.createElement('tr');
-
-		for (let i = 1; i <= 5; i++) {
-			let th = document.createElement('th');
-			let d = new Date(2020, 3, 14);
-			d.setDate(d.getDate() + 1);
-
-			let date = d.getDate();
-			let month = d.getMonth() + 1;
-
-			th.innerText = `${date}-${month}`;
-			dateTr.appendChild(th);
-		}
-		thead.appendChild(dateTr);
-		forecastTable.appendChild(thead);
-
 		let tbody = document.createElement('tbody');
 
+		let dateTr = document.createElement('tr');
 		let weatherTr = document.createElement('tr');
 
-		for (let i = 1; i <= 5; i++) {
+		data.forEach((day) => {
+			let th = document.createElement('th');
+			th.innerText = day.date;
+			dateTr.appendChild(th);
+
 			let td = document.createElement('td');
 
 			let weatherDiv = document.createElement('div');
@@ -41,11 +29,11 @@ export default class ForecastView {
 
 			let highDiv = document.createElement('div');
 			highDiv.className = 'high';
-			highDiv.innerText = '24℃';
+			highDiv.innerText = `${day.temperature.max}℃`;
 
 			let lowDiv = document.createElement('div');
 			lowDiv.className = 'low';
-			lowDiv.innerText = '7℃';
+			lowDiv.innerText = `${day.temperature.min}℃`;
 
 			temperatureDiv.appendChild(highDiv);
 			temperatureDiv.appendChild(lowDiv);
@@ -56,15 +44,19 @@ export default class ForecastView {
 
 			let conditionImg = document.createElement('img');
 			conditionImg.className = 'icon';
-			conditionImg.src = 'http://openweathermap.org/img/wn/10d@2x.png';
-			conditionImg.alt = 'regen overdag';
+			conditionImg.src = `http://openweathermap.org/img/wn/${day.condition.icon}@2x.png`;
+			conditionImg.alt = day.condition.description;
 			conditionDiv.appendChild(conditionImg);
 			weatherDiv.appendChild(conditionDiv);
 			td.appendChild(weatherDiv);
 			weatherTr.appendChild(td);
-		}
+		});
+
+		thead.appendChild(dateTr);
 		tbody.appendChild(weatherTr);
+		forecastTable.appendChild(thead);
 		forecastTable.appendChild(tbody);
+
 		forecastDiv.appendChild(forecastTable);
 		container.appendChild(forecastDiv);
 	}
