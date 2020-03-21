@@ -1,1 +1,35 @@
+.tab-list {
+	width: 100%;
 
+	button {
+		justify-content: center;
+		background-color: $blue;
+		border-style: solid;
+		border-width: 1px;
+		color: $white;
+		height: 75px;
+		text-align: center;
+		font-weight: bold;
+		font-size: xx-large;
+		width: 100%;
+		border-style: solid;
+		border-color: grey;
+		border-width: 4px 2px 4px 2px;
+	}
+
+	button.active {
+		background-color: $white;
+		color: $blue;
+		border-bottom: none;
+	}
+
+	.btn-left {
+		border-top-left-radius: 25px;
+		border-left-width: 4px;
+	}
+
+	.btn-right {
+		border-top-right-radius: 25px;
+		border-right-width: 4px;
+	}
+}

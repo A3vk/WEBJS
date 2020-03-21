@@ -8,31 +8,10 @@ import StepBeautification from '../views/wizard/step-beautification';
 import StepConfirmation from '../views/wizard/step-confirmation';
 
 export default class WizardController {
-	constructor(tab, warehouseController) {
-		this.tab = tab;
+	constructor(type, warehouseController) {
 		this.warehouseController = warehouseController;
 
-		this.product = new Product(this.tab);
-
-		this.views = [];
-
-		this.views[0] = new StepZero();
-		this.views[1] = new StepOne();
-		this.views[2] = new StepTwo();
-
-		switch (this.tab) {
-			case 'clothing':
-				this.views[3] = new StepClothing();
-				break;
-			case 'decoration':
-				this.views[3] = new StepDecoration();
-				break;
-			case 'beautification':
-				this.views[3] = new StepBeautification();
-				break;
-		}
-
-		this.views[4] = new StepConfirmation();
+		this.switchWarehouse(type);
 
 		this.container = document.querySelector('.wizard');
 		this.counter = 0;
@@ -57,7 +36,7 @@ export default class WizardController {
 					this.product.stock = Math.round(data[1]);
 					break;
 				case 3:
-					switch (this.tab) {
+					switch (this.type) {
 						case 'clothing':
 							this.product.color = data[0];
 							this.product.size = data[1];
@@ -85,7 +64,6 @@ export default class WizardController {
 			} else {
 				// Save the product
 				this.warehouseController.saveProduct(this.product);
-
 				// Reset the wizard
 				this.reset();
 			}
@@ -93,8 +71,34 @@ export default class WizardController {
 	}
 
 	reset() {
-		this.product = new Product(this.tab);
+		this.product = new Product(this.type);
 		this.counter = 0;
 		this.next();
+	}
+
+	switchWarehouse(type) {
+		this.type = type;
+
+		this.views = [];
+
+		this.views[0] = new StepZero();
+		this.views[1] = new StepOne();
+		this.views[2] = new StepTwo();
+
+		switch (this.type) {
+			case 'clothing':
+				this.views[3] = new StepClothing();
+				break;
+			case 'decoration':
+				this.views[3] = new StepDecoration();
+				break;
+			case 'beautification':
+				this.views[3] = new StepBeautification();
+				break;
+		}
+
+		this.views[4] = new StepConfirmation();
+
+		this.reset();
 	}
 }
