@@ -1,20 +1,17 @@
 import TabView from '../views/tabs/tab-view';
-import WarehousController from './warehouse-controller';
 
 export default class TabController{
-    constructor(warehousController){
-        this.types = [];
-        
-        for (var key in warehousController.warehouses){
-            this.types.push(warehousController.warehouses[key].type);
-        }
-        this.currentType = this.types[1];
-        this.tabView = new TabView();
-        this.tabView.switchTab = (data) => {
-            this.currentTab = data;
+    constructor(types, wizzardController, gridController){
+        this.wizzardController = wizzardController;
+        this.gridController = gridController;
+        this.tabView = new TabView(types);
+
+        this.tabView.switchTab = (type) => {
+            this.currentTab = type;
+            this.wizzardController.switchWarehouse(type);
+            this.gridController.switchGrid(type);
         };
 
-        this.tabView.render(this.types);
-        console.dir(this.currentTab);
+        this.tabView.render();
     }
 }

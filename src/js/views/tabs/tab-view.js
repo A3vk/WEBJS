@@ -1,54 +1,47 @@
 export default class TabView{
-    render(types){
-        this.tabList = document.querySelector('.tab-list')
+    constructor(types){
+         this.types = types;
+    }
+    render(){
+        let tabList = document.querySelector('.tab-list')
 
-        for (let i in types){
+        this.types.forEach(type => {
+            let li = document.createElement('li');
+            li.className = 'nav-item';
 
-            this.li = document.createElement('li');
-            this.li.className = 'nav-item';
+            let button = document.createElement('button');
+            button.value = type;
 
-            this.button = document.createElement('button');
-            this.button.id = types[i];
-
-            switch (types[i]) {
+            switch (type) {
                 case 'clothing':
-                    this.text = document.createTextNode('Kleding');
+                    button.innerText = 'Kleding';
+                    button.className = 'active btn-left';
+                    this.switchTab(button.value);
                     break;
 
                 case 'decoration':
-                    this.text = document.createTextNode('Decoratie');
+                    button.innerText = 'Decoratie';
                     break;
 
                 case 'beautification':
-                    this.text = document.createTextNode('Tierelantijn');
+                    button.innerText = 'Tierelantijn';
+                    button.className = 'btn-right';
                     break;
 
                 default:
                     break;
             }
 
-            this.button.appendChild(this.text);
-            this.li.append(this.button);
-            this.tabList.append(this.li);
+            button.addEventListener('click', () => {
+                let tab = document.querySelector('button.active');
+                tab.classList.remove('active');
+                button.classList.add('active')
 
-            this.max = i;
-        }
+                this.switchTab(button.value);
+            })
 
-        this.tabs = document.querySelectorAll('.tab-list > li > button')
-
-        this.tabs[0].className = 'active btn-left';
-        this.tabs[this.max].className = 'btn-right';
-        
-        for (let i = 0; i < this.tabs.length; i++) {
-            this.tabs[i].addEventListener('click', () => {
-                this.tab = document.querySelector('button.active');
-                this.tab.classList.remove('active')
-                this.tabs[i].classList.add('active');
-
-                this.switchTab(this.tabs[i].id);
-            });
-        }
-
-        this.switchTab(tabs[0].id);
+            li.append(button);
+            tabList.append(li);
+        });
     }
 }

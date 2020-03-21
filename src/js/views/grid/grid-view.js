@@ -1,26 +1,35 @@
-export default class GridView{
-    constructor(){
-        this.gridContainers = document.querySelectorAll('.grid-container');
+export default class GridView {
+  constructor(grid) {
+    console.dir(grid);
+    this.gridContainer = document.querySelector('.grid-container');
+    this.gridContainer.innerHTML = '';
 
-        for (let i = 0; i < this.gridContainers.length; i++){
-          for (let j = 0; j < 15; j++) {
-            this.row = this.createElement('div', 'row');
-           for (let k = 0; k < 15; k++){
-             this.square = this.createElement('div', 'grid-square');
-               this.row.append(this.square);
-           }
-         this.gridContainers[i].append(this.row);
-         }
+    grid.forEach(line => {
+      let row = document.createElement('div');
+      row.className = 'row';
+
+      line.forEach(spot => {
+        let square = document.createElement('div');
+        square.className = 'grid-square';
+
+        if (spot === -1){
+          square.classList.add('blocked');
         }
-    }
+
+        row.append(square);
+      })
+      this.gridContainer.append(row);
+    });
+
+  }
 
 
-    createElement(tag, className) {
-        const element = document.createElement(tag);
-        if (className) element.classList.add(className)
-    
-        return element;
-      }
+  createElement(tag, className) {
+    const element = document.createElement(tag);
+    if (className) element.classList.add(className)
+
+    return element;
+  }
 }
 
 
