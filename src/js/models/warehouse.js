@@ -3,24 +3,30 @@ import { storageKey } from '../helpers/storage-helper';
 export default class Warehouse {
 	constructor(type) {
 		this.type = type;
-		this.products = [];
 
+		// Get the types storage data
+		let storageData = JSON.parse(localStorage.getItem(storageKey))[this.type];
+		// Get product data
+		this.products = storageData.products;
 		// Get the warehouse data
-		let data = JSON.parse(localStorage.getItem(storageKey));
-		this.warehouse = data[this.type].warehouse;
+		this.warehouse = storageData.warehouse;
 	}
 
 	saveProduct(product) {
+		// Set the right id
+		if (this.products.length === 0) {
+			product.id = 1;
+		} else {
+			product.id = this.products[this.products.length - 1].id + 1;
+		}
+		console.log('product :', product);
 		// Add to list
 		this.products.push(product);
 
-		// Convert to JSON string
-		let productsData = JSON.stringify(this.products);
-
 		// Save
-		let data = JSON.parse(localStorage.getItem(storageKey));
-		data[this.type].products = productsData;
-		localStorage.setItem(storageKey, JSON.stringify(data));
+		let storageData = JSON.parse(localStorage.getItem(storageKey))[this.type];
+		storageData.products.push(product);
+		localStorage.setItem(storageKey, JSON.stringify(storageData));
 	}
 
 	getWarehouse() {}
