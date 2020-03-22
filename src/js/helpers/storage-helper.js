@@ -80,4 +80,9 @@ export default class StorageHelper {
 		console.info('Storage Cleared');
 		this.init();
 	}
+
+	inspect() {
+		let storageData = JSON.parse(localStorage.getItem(storageKey));
+		console.log('storageData :', storageData);
+	}
 }

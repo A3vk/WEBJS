@@ -61,9 +61,11 @@ export default class WizardController {
 			this.counter++;
 			if (this.counter < this.views.length) {
 				this.next();
+				if (this.counter === this.views.length - 1) {
+					// Save the product
+					this.warehouseController.saveProduct(this.product);
+				}
 			} else {
-				// Save the product
-				this.warehouseController.saveProduct(this.product);
 				// Reset the wizard
 				this.reset();
 			}
