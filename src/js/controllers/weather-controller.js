@@ -71,7 +71,7 @@ export default class WeatherController {
 						weatherData.push({
 							date: forecastDate,
 							condition: {
-								icon: forecast.weather[0].icon,
+								icon: forecast.weather[0].icon.replace(/n/g, 'd'),
 								description: forecast.weather[0].description
 							},
 							temperature: {
@@ -101,11 +101,19 @@ export default class WeatherController {
 							conditionCount[forecast.weather[0].description]++;
 						}
 						if (conditionCount[forecast.weather[0].description] > maxCount) {
-							weatherData[weatherData.length - 1].condition.icon = forecast.weather[0].icon;
+							weatherData[weatherData.length - 1].condition.icon = forecast.weather[0].icon.replace(
+								/n/g,
+								'd'
+							);
 							weatherData[weatherData.length - 1].condition.description = forecast.weather[0].description;
+							maxCount = conditionCount[forecast.weather[0].description];
 						}
 					}
 				});
+
+				if (weatherData.length > 5) {
+					weatherData.shift();
+				}
 
 				this.weatherForecast.render(weatherData);
 			})
