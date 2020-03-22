@@ -21,6 +21,15 @@ export default class WarehouseController {
 		return types;
 	}
 
+	getProductNamesAndId(type){
+		let products = {};
+
+		this.warehouses[type].products.forEach(p => {
+			products[p.id] = p.name;
+		});
+		return products;
+	}
+
 	getGrid(type) {
 		return this.warehouses[type].warehouse;
 	}

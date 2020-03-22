@@ -2,7 +2,7 @@ export const storageKey = 'InvyStorage';
 
 export default class StorageHelper {
 	constructor() {
-		if (localStorage.getItem(this.key) === null) {
+		if (localStorage.getItem(storageKey) === null) {
 			this.init();
 		}
 	}
@@ -10,7 +10,32 @@ export default class StorageHelper {
 	init() {
 		const json = {
 			clothing: {
-				products: [],
+				products: [
+					{
+						id: 1,
+						type: "clothing",
+						name: "shirt",
+						description: "Dit is een shirt",
+						purchasePrice: 37,
+						sellingPrice: 40,
+						minamalStock: 22,
+						stock: 30,
+						color: "#ff00ff",
+						size: 50
+					},
+					{
+						id: 2,
+						type: "clothing",
+						name: "broek",
+						description: "Dit is een broek",
+						purchasePrice: 50,
+						sellingPrice: 60,
+						minamalStock: 10,
+						stock: 20,
+						color: "#ff00ff",
+						size: 19
+					}
+				],
 				warehouse: [
 					[ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ],
 					[ -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 ],

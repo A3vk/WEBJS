@@ -8,6 +8,7 @@ export default class Warehouse {
 		// Get the warehouse data
 		let data = JSON.parse(localStorage.getItem(storageKey));
 		this.warehouse = data[this.type].warehouse;
+		this.products = data[this.type].products;
 	}
 
 	saveProduct(product) {

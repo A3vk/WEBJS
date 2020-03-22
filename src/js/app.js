@@ -3,6 +3,7 @@ import GridController from './controllers/grid-controller';
 import TabController from './controllers/tab-controller';
 import StorageHelper from './helpers/storage-helper';
 import WarehouseController from './controllers/warehouse-controller';
+import ProductSelectorController from './controllers/product-selector-controller';
 
 
 
@@ -12,6 +13,7 @@ window.storageHelper = new StorageHelper();
 let warehouseController = new WarehouseController();
 let gridController = new GridController(warehouseController);
 let wizardController = new WizardController('clothing', warehouseController);
+let productSelectorController = new ProductSelectorController(warehouseController);
 
-let tabController = new  TabController(warehouseController.getTypes(), wizardController, gridController);
+let tabController = new  TabController(warehouseController.getTypes(), wizardController, gridController, productSelectorController);
 
