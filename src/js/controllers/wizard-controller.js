@@ -83,23 +83,23 @@ export default class WizardController {
 
 		this.views = [];
 
-		this.views[0] = new StepZero();
-		this.views[1] = new StepOne();
-		this.views[2] = new StepTwo();
+		this.views[0] = new StepZero(this);
+		this.views[1] = new StepOne(this);
+		this.views[2] = new StepTwo(this);
 
 		switch (this.type) {
 			case 'clothing':
-				this.views[3] = new StepClothing();
+				this.views[3] = new StepClothing(this);
 				break;
 			case 'decoration':
-				this.views[3] = new StepDecoration();
+				this.views[3] = new StepDecoration(this);
 				break;
 			case 'beautification':
-				this.views[3] = new StepBeautification();
+				this.views[3] = new StepBeautification(this);
 				break;
 		}
 
-		this.views[4] = new StepConfirmation();
+		this.views[4] = new StepConfirmation(this);
 
 		this.reset();
 	}
