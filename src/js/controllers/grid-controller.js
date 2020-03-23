@@ -28,10 +28,6 @@ export default class GridController {
 		this.gridView.getProductPosition = (id) => {
 			return this.warehouseController.getProductPosition(this.type, id);
 		}
-
-		this.gridView.getProductPosition = (id) => {
-			return this.warehouseController.getProductPosition(this.type, id);
-		}
 		this.gridView.render(grid);
 	}
 }

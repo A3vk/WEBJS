@@ -38,7 +38,7 @@ export default class ProductSelectorView {
 
             let image = document.createElement('img');
 
-            if (this.selectedProduct.children.length === 0) {
+            if (this.selectedProduct.children.length === 0 && this.selector.options.length !== 0) {
 
                 for (let i = 0; i < this.selector.options.length; i++) {
                     let option = this.selector.options[i];
@@ -77,9 +77,7 @@ export default class ProductSelectorView {
 
             try {
                 let postion = this.getProductPosition(id);
-                console.dir(postion);
                 if (postion != undefined) {
-                    console.dir('test');
                     this.saveProductPosition(0, postion[0], postion[1]);
                 }
 
@@ -91,7 +89,6 @@ export default class ProductSelectorView {
                 option.value = id;
                 option.innerText = name;
                 this.selector.append(option);
-                console.dir(document.getElementById(id));
                 ev.target.appendChild(document.getElementById(id));
                 trashcan.innerHTML = '';
             }

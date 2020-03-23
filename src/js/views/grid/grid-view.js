@@ -12,9 +12,9 @@ export default class GridView {
 				if (grid[y][x] === -1) {
 					square.classList.add('blocked');
 				} else {
-					if (grid[y][x] !== 0 ){
+					if (grid[y][x] !== 0) {
 						let image = document.createElement('img');
-						let source = this.getProductImage(grid[y][x]);
+						let source = this.getProductImage(grid[y][x]) + '?' + new Date().getTime();
 						image.src = source;
 						image.id = grid[y][x]
 						image.ondragstart = (ev) => {
@@ -24,7 +24,7 @@ export default class GridView {
 						let selector = document.querySelector('.product-selector > select')
 						for (let i = 0; i < selector.options.length; i++) {
 							let option = selector[i];
-							if (option.value == grid[y][x]){
+							if (option.value == grid[y][x]) {
 								selector.removeChild(option);
 							}
 						}
@@ -38,28 +38,25 @@ export default class GridView {
 						ev.preventDefault();
 					}
 
-					// square.ondragleave = (ev) => {
-					// 	this.saveProductPosition(0, y, x);
-					// }
-
 					square.ondrop = (ev) => {
-						// if (ev.target.childeren.length !== 0){
-						// 	return;
-						// }
 						ev.preventDefault();
 						let id = ev.dataTransfer.getData("text");
-						let postion = this.getProductPosition(id);
-						console.dir(postion);
-
-						if(postion != undefined){
-							this.saveProductPosition(0, postion[0], postion[1]);
-						}
-
 						try {
-							ev.target.appendChild(document.getElementById(id));
+							console.dir(ev.target.children.length);
+							if (ev.target.children.length != 0) {
+								return;
+							}
+							let postion = this.getProductPosition(id);
+							if (postion != undefined) {
+								this.saveProductPosition(0, postion[0], postion[1]);
+							}
+							
+							ev.target.appendChild(document.getElementById(id));	
+							console.dir(ev.target.children.length);
+
 							this.saveProductPosition(id, y, x);
 						}
-						catch (err){
+						catch (err) {
 							return;
 						}
 					}
