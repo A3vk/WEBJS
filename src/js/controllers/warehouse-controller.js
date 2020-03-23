@@ -30,6 +30,16 @@ export default class WarehouseController {
 		return products;
 	}
 
+	getProductName(type, id){
+		console.dir(id);
+		for (let i  in this.warehouses[type].products){
+			if (this.warehouses[type].products[i].id == id){
+				return this.warehouses[type].products[i].name;
+			}
+		};
+		return '';
+	}
+
 	getGrid(type) {
 		return this.warehouses[type].warehouse;
 	}

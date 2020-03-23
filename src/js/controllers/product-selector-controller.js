@@ -10,10 +10,16 @@ export default class ProductSelectorController{
             }
             return '';
         }
+        
     }
 
     switchSelector(type){
         this.products = this.warehouseController.getProductNamesAndId(type);
+        this.type = type;
         this.productSelectorView.render(this.products);
+        this.productSelectorView.getProductName = (id) => {
+            let name = (this.warehouseController.getProductName(this.type, id));
+            return name;
+        }
     }
 }

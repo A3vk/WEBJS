@@ -22,6 +22,8 @@ export default class GridView {
 						ev.preventDefault();
 						var image = ev.dataTransfer.getData("text");
 						ev.target.style.backgroundColor = image;
+						let selectedProductContainer = document.querySelector('.selected-product-container');
+            			selectedProductContainer.innerHTML = '';
 					}
 				}
 				row.append(square);
