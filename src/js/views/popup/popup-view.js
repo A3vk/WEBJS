@@ -9,7 +9,7 @@ export default class PopupView {
 		this.noteView = new NoteView();
 		this.canvasView = new CanvasView();
 
-		let modal = document.querySelector('.modal');
+		let modal = document.querySelector('.product-modal');
 		let container = modal.querySelector('.container');
 
 		// Add close event handler for a click on the outside of the modal
@@ -20,7 +20,7 @@ export default class PopupView {
 		});
 
 		//Add close event handler for a click on the save button
-		let closeButton = document.querySelector('.modal .close-save');
+		let closeButton = document.querySelector('.product-modal .close-save');
 		closeButton.addEventListener('click', () => {
 			this.saveAndClose(modal);
 		});
@@ -48,7 +48,7 @@ export default class PopupView {
 			this.noteView.render(this.product.notes);
 			this.canvasView.render(this.product.image, this.product.drawing);
 
-			let modal = document.querySelector('.modal');
+			let modal = document.querySelector('.product-modal');
 
 			modal.classList.remove('hidden');
 		}

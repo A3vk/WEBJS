@@ -8,8 +8,10 @@ import StepBeautification from '../views/wizard/step-beautification';
 import StepConfirmation from '../views/wizard/step-confirmation';
 
 export default class WizardController {
-	constructor(type, warehouseController) {
+	constructor(type, warehouseController, calculatorController) {
 		this.warehouseController = warehouseController;
+		this.calculatorController = calculatorController;
+		this.isCalculatorOpen = false;
 
 		this.switchWarehouse(type);
 
@@ -102,5 +104,13 @@ export default class WizardController {
 		this.views[4] = new StepConfirmation(this);
 
 		this.reset();
+	}
+
+	toggleCalculator() {
+		if (this.calculatorController.isOpen) {
+			this.calculatorController.hide();
+		} else {
+			this.calculatorController.show();
+		}
 	}
 }
