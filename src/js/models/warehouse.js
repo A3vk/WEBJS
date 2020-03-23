@@ -44,6 +44,13 @@ export default class Warehouse {
 		}
 	}
 
+	saveProductPosition(id, y, x){
+		this.warehouse[y] [x] = parseInt(id);
+		let storageData = JSON.parse(localStorage.getItem(storageKey));
+		storageData[this.type].warehouse = this.warehouse;
+		localStorage.setItem(storageKey, JSON.stringify(storageData));
+	}
+
 	getProduct(x, y) {
 		for (const product in this.products) {
 			if (this.products.hasOwnProperty(product)) {
@@ -54,5 +61,16 @@ export default class Warehouse {
 			}
 		}
 		return null;
+	}
+
+	getProductPosition(id){
+		for (let y = 0; y < this.warehouse.length; y++){
+			for (let x = 0; x < this.warehouse.length; x++){
+				if (this.warehouse[y][x] == id){
+					let position = [y, x];
+					return position;
+				}
+			}
+		}
 	}
 }
