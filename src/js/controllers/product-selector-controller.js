@@ -3,6 +3,7 @@ import ProductSelectorView from '../views/productSelector/product-selector-view'
 export default class ProductSelectorController{
     constructor(warehouseController){
         this.warehouseController = warehouseController;
+        warehouseController.productSelectorController = this;
         this.productSelectorView = new ProductSelectorView();
     }
 
@@ -25,5 +26,9 @@ export default class ProductSelectorController{
         this.productSelectorView.saveProductPosition = (id, y, x) => {
 			this.warehouseController.saveProductPosition(this.type, id, y, x);
 		}
+    }
+
+    updateSelector(id){
+        this.productSelectorView.updateSelector(id);
     }
 }

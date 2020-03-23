@@ -84,11 +84,7 @@ export default class ProductSelectorView {
 
 
                 this.selectedProduct.innerHTML = '';
-                let name = this.getProductName(id);
-                let option = document.createElement('option');
-                option.value = id;
-                option.innerText = name;
-                this.selector.append(option);
+                this.updateSelector(id);
                 ev.target.appendChild(document.getElementById(id));
                 trashcan.innerHTML = '';
             }
@@ -99,5 +95,13 @@ export default class ProductSelectorView {
         }
         trashcanContainer.append(label);
         trashcanContainer.append(trashcan);
+    }
+
+    updateSelector(id) {
+        let name = this.getProductName(id);
+        let option = document.createElement('option');
+        option.value = id;
+        option.innerText = name;
+        this.selector.append(option);
     }
 }
