@@ -1,25 +1,26 @@
 export default class CanvasView {
 	constructor() {
-		let imageCanvas = document.querySelector('.canvas-container #image-canvas');
-		let imageContext = imageCanvas.getContext('2d');
-		let drawingCanvas = document.querySelector('.canvas-container #drawing-canvas');
-		let drawingContext = drawingCanvas.getContext('2d');
+		this.imageCanvas = document.querySelector('.canvas-container #image-canvas');
+		this.imageContext = this.imageCanvas.getContext('2d');
+		this.drawingCanvas = document.querySelector('.canvas-container #drawing-canvas');
+		this.drawingContext = this.drawingCanvas.getContext('2d');
 		let imageSelector = document.querySelector('#file');
+		let colorSelector = document.querySelector('#color-selector');
+		let strengthSelector = document.querySelector('#strength-selector');
 
-		drawingCanvas.width = 1000;
-		drawingCanvas.height = 1000;
+		this.drawingCanvas.width = 1000;
+		this.drawingCanvas.height = 1000;
 
 		imageSelector.addEventListener('change', (e) => {
-			console.dir('Uploaded Image');
-			var reader = new FileReader();
-			reader.onload = function(event) {
-				var img = new Image();
-				img.onload = function() {
-					imageCanvas.width = img.width;
-					imageCanvas.height = img.height;
-					imageContext.drawImage(img, 0, 0);
+			let reader = new FileReader();
+			reader.onload = (e) => {
+				let img = new Image();
+				img.onload = () => {
+					this.imageCanvas.width = img.width;
+					this.imageCanvas.height = img.height;
+					this.imageContext.drawImage(img, 0, 0);
 				};
-				img.src = event.target.result;
+				img.src = e.target.result;
 			};
 			reader.readAsDataURL(e.target.files[0]);
 		});
@@ -27,52 +28,79 @@ export default class CanvasView {
 		let lastX, lastY;
 		let mousePressed = false;
 
-		drawingCanvas.addEventListener('mousedown', (e) => {
+		this.drawingCanvas.addEventListener('mousedown', (e) => {
 			mousePressed = true;
-			let pos = getMousePos(drawingCanvas, e);
+			let pos = getMousePos(this.drawingCanvas, e);
 			lastX = pos.x;
 			lastY = pos.y;
 		});
 
-		drawingCanvas.addEventListener('mousemove', (e) => {
+		this.drawingCanvas.addEventListener('mousemove', (e) => {
 			if (mousePressed) {
-				let pos = getMousePos(drawingCanvas, e);
-				drawingContext.beginPath();
-				drawingContext.strokeStyle = 'red';
-				drawingContext.lineWidth = 6;
-				drawingContext.lineJoin = 'round';
-				drawingContext.moveTo(lastX, lastY);
-				drawingContext.lineTo(pos.x, pos.y);
-				drawingContext.closePath();
-				drawingContext.stroke();
+				let pos = getMousePos(this.drawingCanvas, e);
+				this.drawingContext.beginPath();
+				this.drawingContext.strokeStyle = colorSelector.value;
+				this.drawingContext.lineWidth = strengthSelector.value;
+				this.drawingContext.lineJoin = 'round';
+				this.drawingContext.moveTo(lastX, lastY);
+				this.drawingContext.lineTo(pos.x, pos.y);
+				this.drawingContext.closePath();
+				this.drawingContext.stroke();
 				lastX = pos.x;
 				lastY = pos.y;
 			}
 		});
 
-		drawingCanvas.addEventListener('mouseup', (e) => {
+		this.drawingCanvas.addEventListener('mouseup', (e) => {
 			mousePressed = false;
 		});
 
-		drawingCanvas.addEventListener('mouseleave', (e) => {
+		this.drawingCanvas.addEventListener('mouseleave', (e) => {
 			mousePressed = false;
 		});
 
 		let clearButton = document.querySelector('#clear');
 		clearButton.addEventListener('click', () => {
-			drawingContext.setTransform(1, 0, 0, 1, 0, 0);
-			drawingContext.clearRect(0, 0, drawingContext.canvas.width, drawingContext.canvas.height);
+			this.drawingContext.clearRect(0, 0, this.drawingContext.canvas.width, this.drawingContext.canvas.height);
 		});
+	}
+
+	render(image, drawing) {
+		if (image) {
+			let imageImg = new Image();
+			imageImg.onload = () => {
+				this.imageCanvas.width = imageImg.width;
+				this.imageCanvas.height = imageImg.height;
+				this.imageContext.drawImage(imageImg, 0, 0);
+			};
+			imageImg.src = image;
+		}
+		if (drawing) {
+			let drawingImg = new Image();
+			drawingImg.onload = () => {
+				this.drawingCanvas.width = drawingImg.width;
+				this.drawingCanvas.height = drawingImg.height;
+				this.drawingContext.drawImage(drawingImg, 0, 0);
+			};
+			drawingImg.src = drawing;
+		}
+	}
+
+	getCanvases() {
+		return {
+			image: this.imageCanvas.toDataURL(),
+			drawing: this.drawingCanvas.toDataURL()
+		};
 	}
 }
 
 function getMousePos(canvas, evt) {
-	var rect = canvas.getBoundingClientRect(), // abs. size of element
-		scaleX = canvas.width / rect.width, // relationship bitmap vs. element for X
-		scaleY = canvas.height / rect.height; // relationship bitmap vs. element for Y
+	let rect = canvas.getBoundingClientRect();
+	let scaleX = canvas.width / rect.width;
+	let scaleY = canvas.height / rect.height;
 
 	return {
-		x: (evt.clientX - rect.left) * scaleX, // scale mouse coordinates after they have
-		y: (evt.clientY - rect.top) * scaleY // been adjusted to be relative to element
+		x: (evt.clientX - rect.left) * scaleX,
+		y: (evt.clientY - rect.top) * scaleY
 	};
 }

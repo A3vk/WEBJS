@@ -53,4 +53,13 @@ export default class PropertyView {
 
 		return listItem;
 	}
+
+	getProperties() {
+		let listItems = document.querySelectorAll('.properties .list-group .list-group-item input');
+		let properties = [];
+		listItems.forEach((item) => {
+			properties.push(item.value);
+		});
+		return properties;
+	}
 }

@@ -7,10 +7,16 @@ export default class WarehouseController {
 			decoration: new Warehouse('decoration'),
 			beautification: new Warehouse('beautification')
 		};
+
+		this.currentType = 'clothing';
 	}
 
 	saveProduct(product) {
-		this.warehouses[product.type].saveProduct(product);
+		this.warehouses[this.currentType].saveProduct(product);
+	}
+
+	updateProduct(product) {
+		this.warehouses[this.currentType].updateProduct(product);
 	}
 
 	getTypes() {

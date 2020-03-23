@@ -29,7 +29,20 @@ export default class Warehouse {
 		localStorage.setItem(storageKey, JSON.stringify(storageData));
 	}
 
-	updateProduct(product) {}
+	updateProduct(product) {
+		for (const p of this.products) {
+			if (p.id === product.id) {
+				p.properties = product.properties;
+				p.notes = product.notes;
+				p.image = product.image;
+				p.drawing = product.drawing;
+
+				let storageData = JSON.parse(localStorage.getItem(storageKey));
+				storageData[this.type].products = this.products;
+				localStorage.setItem(storageKey, JSON.stringify(storageData));
+			}
+		}
+	}
 
 	getProduct(x, y) {
 		for (const product in this.products) {
