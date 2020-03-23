@@ -22,6 +22,11 @@ export default class WarehouseController {
 	}
 
 	getGrid(type) {
+		this.currentType = type;
 		return this.warehouses[type].warehouse;
+	}
+
+	getProduct(x, y) {
+		return this.warehouses[this.currentType].getProduct(x, y);
 	}
 }

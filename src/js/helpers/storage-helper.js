@@ -2,7 +2,7 @@ export const storageKey = 'InvyStorage';
 
 export default class StorageHelper {
 	constructor() {
-		if (localStorage.getItem(this.key) === null) {
+		if (localStorage.getItem(storageKey) === null) {
 			this.init();
 		}
 	}
@@ -13,7 +13,7 @@ export default class StorageHelper {
 				products: [],
 				warehouse: [
 					[ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ],
-					[ -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 ],
+					[ -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 ],
 					[ -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 ],
 					[ -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 ],
 					[ -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 ],
