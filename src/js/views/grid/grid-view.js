@@ -14,7 +14,11 @@ export default class GridView {
 				} else {
 					if (grid[y][x] !== 0) {
 						let image = document.createElement('img');
-						let source = this.getProductImage(grid[y][x]) + '?' + new Date().getTime();
+						let source = this.getProductImage(grid[y][x])
+						// if (source.substring(0,4) === 'data'){
+						// 	source = source + '?' + new Date().getTime();
+						// }
+						 
 						image.src = source;
 						image.id = grid[y][x]
 						image.ondragstart = (ev) => {
@@ -40,25 +44,21 @@ export default class GridView {
 
 					square.ondrop = (ev) => {
 						ev.preventDefault();
-						let id = ev.dataTransfer.getData("text");
-						try {
-							console.dir(ev.target.children.length);
-							if (ev.target.children.length != 0) {
-								return;
-							}
-							let postion = this.getProductPosition(id);
-							if (postion != undefined) {
-								this.saveProductPosition(0, postion[0], postion[1]);
-							}
-							
-							ev.target.appendChild(document.getElementById(id));	
-							console.dir(ev.target.children.length);
-
-							this.saveProductPosition(id, y, x);
-						}
-						catch (err) {
+						let id = ev.dataTransfer.getData('text');
+						try{
+						if (square.children.length != 0) {
 							return;
 						}
+						let position = this.getProductPosition(id);
+						if (position != undefined) {
+							this.saveProductPosition(0, position[0], position[1]);
+						}
+						ev.target.appendChild(document.getElementById(id));
+						this.saveProductPosition(id, y, x);
+					}
+					catch{
+						return;
+					}
 					}
 				}
 				row.append(square);
