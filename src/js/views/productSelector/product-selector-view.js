@@ -10,6 +10,7 @@ export default class ProductSelectorView {
         trashcanContainer.innerHTML = '';
 
         let selectedProductContainer = document.querySelector('.selected-product-container');
+        selectedProductContainer.innerHTML = '';
         let selectedProductLabel = document.createElement('label');
         selectedProductLabel.innerText = 'Geselecteerd';
         this.selectedProduct = document.createElement('div');
@@ -37,7 +38,6 @@ export default class ProductSelectorView {
 
             let image = document.createElement('img');
 
-            console.dir(this.selectedProduct.innerHTML);
             if (this.selectedProduct.children.length === 0) {
 
                 for (let i = 0; i < this.selector.options.length; i++) {
@@ -54,7 +54,6 @@ export default class ProductSelectorView {
 
                 image.draggable = true;
                 image.ondragstart = (ev) => {
-                    console.dir(ev.target.id);
                     ev.dataTransfer.setData("text", ev.target.id);
                 }
                 this.selectedProduct.append(image);
@@ -77,12 +76,22 @@ export default class ProductSelectorView {
             let id = ev.dataTransfer.getData("text");
 
             try {
+                let postion = this.getProductPosition(id);
+                console.dir(postion);
+                if (postion != undefined) {
+                    console.dir('test');
+                    this.saveProductPosition(0, postion[0], postion[1]);
+                }
+
+
+
                 this.selectedProduct.innerHTML = '';
                 let name = this.getProductName(id);
                 let option = document.createElement('option');
                 option.value = id;
                 option.innerText = name;
                 this.selector.append(option);
+                console.dir(document.getElementById(id));
                 ev.target.appendChild(document.getElementById(id));
                 trashcan.innerHTML = '';
             }

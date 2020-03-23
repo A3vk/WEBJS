@@ -17,5 +17,13 @@ export default class ProductSelectorController{
         this.productSelectorView.getProductImage = (id) => {
             return this.warehouseController.getProductImage(this.type, id);
         }
+
+        this.productSelectorView.getProductPosition = (id) => {
+            return this.warehouseController.getProductPosition(this.type, id);
+        }
+
+        this.productSelectorView.saveProductPosition = (id, y, x) => {
+			this.warehouseController.saveProductPosition(this.type, id, y, x);
+		}
     }
 }

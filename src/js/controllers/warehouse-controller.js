@@ -64,8 +64,12 @@ export default class WarehouseController {
 	saveProductPosition(type, id, y, x){
 		this.warehouses[type].saveProductPosition(id, y, x);
 	}
-	
+
 	getProduct(x, y) {
 		return this.warehouses[this.currentType].getProduct(x, y);
+	}
+
+	getProductPosition(type, id){
+		return this.warehouses[type].getProductPosition(id);
 	}
 }

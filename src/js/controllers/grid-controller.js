@@ -10,7 +10,6 @@ export default class GridController {
 	switchGrid(type) {
 		this.type = type;
 		let grid = this.warehouseController.getGrid(type);
-		this.gridView.render(grid);
 
 		this.gridView.getProductImage = (id) => {
 			return this.warehouseController.getProductImage(this.type, id);
@@ -25,5 +24,14 @@ export default class GridController {
 		this.gridView.openPopup = (x, y) => {
 			this.popupView.open(x, y);
 		};
+
+		this.gridView.getProductPosition = (id) => {
+			return this.warehouseController.getProductPosition(this.type, id);
+		}
+
+		this.gridView.getProductPosition = (id) => {
+			return this.warehouseController.getProductPosition(this.type, id);
+		}
+		this.gridView.render(grid);
 	}
 }

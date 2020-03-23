@@ -13,7 +13,23 @@ export default class GridView {
 					square.classList.add('blocked');
 				} else {
 					if (grid[y][x] !== 0 ){
-						
+						let image = document.createElement('img');
+						let source = this.getProductImage(grid[y][x]);
+						image.src = source;
+						image.id = grid[y][x]
+						image.ondragstart = (ev) => {
+							ev.dataTransfer.setData("text", ev.target.id);
+						}
+
+						let selector = document.querySelector('.product-selector > select')
+						for (let i = 0; i < selector.options.length; i++) {
+							let option = selector[i];
+							if (option.value == grid[y][x]){
+								selector.removeChild(option);
+							}
+						}
+
+						square.append(image);
 					}
 					square.addEventListener('click', () => {
 						this.openPopup(x, y);
@@ -21,15 +37,26 @@ export default class GridView {
 					square.ondragover = (ev) => {
 						ev.preventDefault();
 					}
+
+					// square.ondragleave = (ev) => {
+					// 	this.saveProductPosition(0, y, x);
+					// }
+
 					square.ondrop = (ev) => {
+						// if (ev.target.childeren.length !== 0){
+						// 	return;
+						// }
 						ev.preventDefault();
 						let id = ev.dataTransfer.getData("text");
+						let postion = this.getProductPosition(id);
+						console.dir(postion);
+
+						if(postion != undefined){
+							this.saveProductPosition(0, postion[0], postion[1]);
+						}
+
 						try {
 							ev.target.appendChild(document.getElementById(id));
-
-							square.ondragleave = (ev) => {
-								this.saveProductPosition(0, y, x);
-							}
 							this.saveProductPosition(id, y, x);
 						}
 						catch (err){

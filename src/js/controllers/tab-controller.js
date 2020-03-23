@@ -10,8 +10,8 @@ export default class TabController {
 		this.tabView.switchTab = (type) => {
 			this.currentTab = type;
 			this.wizzardController.switchWarehouse(type);
+			productSelectorController.switchSelector(type);
 			this.gridController.switchGrid(type);
-			productSelectorController.switchSelector(type)
 		};
 
 		this.tabView.render();
