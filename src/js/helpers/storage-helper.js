@@ -40,7 +40,7 @@ export default class StorageHelper {
 				],
 				warehouse: [
 					[ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ],
-					[ -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 ],
+					[ -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 ],
 					[ -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 ],
 					[ -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 ],
 					[ -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 ],
@@ -106,5 +106,10 @@ export default class StorageHelper {
 		localStorage.removeItem(storageKey);
 		console.info('Storage Cleared');
 		this.init();
+	}
+
+	inspect() {
+		let storageData = JSON.parse(localStorage.getItem(storageKey));
+		console.log('storageData :', storageData);
 	}
 }

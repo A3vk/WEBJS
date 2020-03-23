@@ -1,5 +1,4 @@
 .wizard-container {
-	color: $blue;
 	border: 4px solid grey;
 	border-top-width: 2px;
 	border-radius: 0 0 20px 20px;
@@ -21,6 +20,14 @@
 
 		> * {
 			margin: 5px 0;
+		}
+
+		.close-button {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			width: 50px;
+			height: 50px;
 		}
 
 		button {

@@ -1,7 +1,4 @@
 export default class GridView {
-	constructor() {
-	}
-
 	render(grid) {
 		this.gridContainer = document.querySelector('.grid-container');
 		this.gridContainer.innerHTML = '';
@@ -14,7 +11,10 @@ export default class GridView {
 				square.className = 'grid-square';
 				if (grid[y][x] === -1) {
 					square.classList.add('blocked');
-				} else if (grid[y][x] === 0) {
+				} else {
+					if (grid[y][x] !== 0 ){
+						
+					}
 					square.addEventListener('click', () => {
 						this.openPopup(x, y);
 					});

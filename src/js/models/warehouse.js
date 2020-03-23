@@ -3,25 +3,45 @@ import { storageKey } from '../helpers/storage-helper';
 export default class Warehouse {
 	constructor(type) {
 		this.type = type;
-		this.products = [];
 
+		// Get the types storage data
+		let storageData = JSON.parse(localStorage.getItem(storageKey))[this.type];
+		// Get product data
+		this.products = storageData.products;
 		// Get the warehouse data
-		let data = JSON.parse(localStorage.getItem(storageKey));
-		this.warehouse = data[this.type].warehouse;
-		this.products = data[this.type].products;
+		this.warehouse = storageData.warehouse;
 	}
 
 	saveProduct(product) {
+		// Set the right id
+		if (this.products.length === 0) {
+			product.id = 1;
+		} else {
+			product.id = this.products[this.products.length - 1].id + 1;
+		}
+
 		// Add to list
 		this.products.push(product);
 
-		// Convert to JSON string
-		let productsData = JSON.stringify(this.products);
-
 		// Save
-		let data = JSON.parse(localStorage.getItem(storageKey));
-		data[this.type].products = productsData;
-		localStorage.setItem(storageKey, JSON.stringify(data));
+		let storageData = JSON.parse(localStorage.getItem(storageKey));
+		storageData[this.type].products.push(product);
+		localStorage.setItem(storageKey, JSON.stringify(storageData));
+	}
+
+	updateProduct(product) {
+		for (const p of this.products) {
+			if (p.id === product.id) {
+				p.properties = product.properties;
+				p.notes = product.notes;
+				p.image = product.image;
+				p.drawing = product.drawing;
+
+				let storageData = JSON.parse(localStorage.getItem(storageKey));
+				storageData[this.type].products = this.products;
+				localStorage.setItem(storageKey, JSON.stringify(storageData));
+			}
+		}
 	}
 
 	saveProductPosition(id, y, x){
@@ -32,5 +52,15 @@ export default class Warehouse {
 		localStorage.setItem(storageKey, JSON.stringify(storageData));
 	}
 
-	getWarehouse() {}
+	getProduct(x, y) {
+		for (const product in this.products) {
+			if (this.products.hasOwnProperty(product)) {
+				const element = this.products[product];
+				if (element.id === this.warehouse[y][x]) {
+					return element;
+				}
+			}
+		}
+		return null;
+	}
 }

@@ -1,22 +1,29 @@
 import GridView from '../views/grid/grid-view';
+import PopupView from '../views/popup/popup-view';
 
 export default class GridController {
 	constructor(warehouseController) {
 		this.warehouseController = warehouseController;
-		this.GridView = new GridView();
+		this.gridView = new GridView();
 	}
 
 	switchGrid(type) {
 		this.type = type;
 		let grid = this.warehouseController.getGrid(type);
-		this.GridView.render(grid);
+		this.gridView.render(grid);
 
-		this.GridView.getProductImage = (id) => {
+		this.gridView.getProductImage = (id) => {
 			return this.warehouseController.getProductImage(this.type, id);
 		}
 
-		this.GridView.saveProductPosition = (id, y, x) => {
+		this.gridView.saveProductPosition = (id, y, x) => {
 			this.warehouseController.saveProductPosition(this.type, id, y, x);
 		}
+
+		this.popupView = new PopupView(this.warehouseController);
+
+		this.gridView.openPopup = (x, y) => {
+			this.popupView.open(x, y);
+		};
 	}
 }
