@@ -10,6 +10,13 @@ export default class ProductSelectorView {
         trashcanContainer.innerHTML = '';
 
         let selectedProductContainer = document.querySelector('.selected-product-container');
+        let selectedProductLabel = document.createElement('label');
+        selectedProductLabel.innerText = 'Geselecteerd';
+        this.selectedProduct = document.createElement('div');
+        this.selectedProduct.className = 'selected-product';
+
+        selectedProductContainer.append(selectedProductLabel);
+        selectedProductContainer.append(this.selectedProduct);
 
 
         this.selector = document.createElement('select');
@@ -21,41 +28,42 @@ export default class ProductSelectorView {
             product.innerText = value;
             product.value = key;
             this.selector.append(product);
-         });
+        });
 
         let button = document.createElement('button');
         button.innerText = 'Add';
         button.className = 'col-md-3';
         button.addEventListener('click', () => {
-            let square = document.createElement('div');
-            for (let i = 0; i < this.selector.options.length; i++) {
-                let option = this.selector.options[i];
-                if (option.selected === true) {
-                    this.image = this.getProductImage(option.value);
-                    this.selector.removeChild(option);
-                    square.value = option.value;
+
+            let image = document.createElement('img');
+
+            console.dir(this.selectedProduct.innerHTML);
+            if (this.selectedProduct.children.length === 0) {
+
+                for (let i = 0; i < this.selector.options.length; i++) {
+                    let option = this.selector.options[i];
+                    if (option.selected === true) {
+                        this.source = this.getProductImage(option.value) + '?' + new Date().getTime();
+                        this.selector.removeChild(option);
+                        image.id = option.value;
+                    }
                 }
+                this.selectedProduct.innerHTML = '';
+
+                image.src = this.source;
+
+                image.draggable = true;
+                image.ondragstart = (ev) => {
+                    console.dir(ev.target.id);
+                    ev.dataTransfer.setData("text", ev.target.id);
+                }
+                this.selectedProduct.append(image);
             }
-
-            let selectedProductContainer = document.querySelector('.selected-product-container');
-            selectedProductContainer.innerHTML = '';
-
-            square.className = 'selected-product';
-            square.draggable = true;
-            square.ondragstart = (ev) => {
-                ev.dataTransfer.setData("text", this.image, 'test');
-            }
-            square.style.backgroundColor = this.image;
-            selectedProductContainer.append(square);
-
-
-
         });
 
         productSelectorContainer.append(this.selector);
         productSelectorContainer.append(button);
 
-        
         let label = document.createElement('label');
         label.innerText = 'Deselecteren';
         let trashcan = document.createElement('div');
@@ -66,14 +74,22 @@ export default class ProductSelectorView {
         }
 
         trashcan.ondrop = (ev) => {
-            let selectedProductContainer = document.querySelector('.selected-product-container');
-            let selectedProduct = document.querySelector('.selected-product-container > .selected-product')
-            selectedProductContainer.innerHTML = '';
-            let name = this.getProductName(selectedProduct.value);
-            let option = document.createElement('option');
-            option.value = selectedProduct.value;
-            option.innerText = name;
-            this.selector.append(option);
+            let id = ev.dataTransfer.getData("text");
+
+            try {
+                this.selectedProduct.innerHTML = '';
+                let name = this.getProductName(id);
+                let option = document.createElement('option');
+                option.value = id;
+                option.innerText = name;
+                this.selector.append(option);
+                ev.target.appendChild(document.getElementById(id));
+                trashcan.innerHTML = '';
+            }
+
+            catch (err) {
+                return;
+            }
         }
         trashcanContainer.append(label);
         trashcanContainer.append(trashcan);

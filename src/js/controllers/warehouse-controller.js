@@ -31,7 +31,6 @@ export default class WarehouseController {
 	}
 
 	getProductName(type, id){
-		console.dir(id);
 		for (let i  in this.warehouses[type].products){
 			if (this.warehouses[type].products[i].id == id){
 				return this.warehouses[type].products[i].name;
@@ -42,5 +41,20 @@ export default class WarehouseController {
 
 	getGrid(type) {
 		return this.warehouses[type].warehouse;
+	}
+
+	getProductImage(type, id ){
+		for (let i  in this.warehouses[type].products){
+			if (this.warehouses[type].products[i].id == id){
+				return this.warehouses[type].products[i].image;
+			}
+			else if (this.warehouses[type].products[i].id == id){
+				return this.warehouses[type].products[i].image;
+			}
+		};
+	}
+
+	saveProductPosition(type, id, y, x){
+		this.warehouses[type].saveProductPosition(id, y, x);
 	}
 }

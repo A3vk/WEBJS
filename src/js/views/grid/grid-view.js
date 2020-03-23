@@ -1,5 +1,8 @@
 export default class GridView {
-	constructor(grid) {
+	constructor() {
+	}
+
+	render(grid) {
 		this.gridContainer = document.querySelector('.grid-container');
 		this.gridContainer.innerHTML = '';
 
@@ -20,10 +23,18 @@ export default class GridView {
 					}
 					square.ondrop = (ev) => {
 						ev.preventDefault();
-						var image = ev.dataTransfer.getData("text");
-						ev.target.style.backgroundColor = image;
-						let selectedProductContainer = document.querySelector('.selected-product-container');
-            			selectedProductContainer.innerHTML = '';
+						let id = ev.dataTransfer.getData("text");
+						try {
+							ev.target.appendChild(document.getElementById(id));
+
+							square.ondragleave = (ev) => {
+								this.saveProductPosition(0, y, x);
+							}
+							this.saveProductPosition(id, y, x);
+						}
+						catch (err){
+							return;
+						}
 					}
 				}
 				row.append(square);

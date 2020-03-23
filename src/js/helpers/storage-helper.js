@@ -21,7 +21,8 @@ export default class StorageHelper {
 						minamalStock: 22,
 						stock: 30,
 						color: "#ff00ff",
-						size: 50
+						size: 50,
+						image: 'https://www.colorbook.io/imagecreator.php?width=55&height=55?'
 					},
 					{
 						id: 2,
@@ -33,7 +34,8 @@ export default class StorageHelper {
 						minamalStock: 10,
 						stock: 20,
 						color: "#ff00ff",
-						size: 19
+						size: 19,
+						image: 'https://www.colorbook.io/imagecreator.php?width=55&height=55?'
 					}
 				],
 				warehouse: [

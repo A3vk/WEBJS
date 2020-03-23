@@ -24,5 +24,13 @@ export default class Warehouse {
 		localStorage.setItem(storageKey, JSON.stringify(data));
 	}
 
+	saveProductPosition(id, y, x){
+		this.warehouse[y] [x] = parseInt(id);
+
+		let storageData = JSON.parse(localStorage.getItem(storageKey));
+		storageData[this.type].warehouse = this.warehouse;
+		localStorage.setItem(storageKey, JSON.stringify(storageData));
+	}
+
 	getWarehouse() {}
 }
