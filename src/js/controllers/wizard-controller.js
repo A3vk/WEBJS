@@ -6,6 +6,7 @@ import StepClothing from '../views/wizard/step-clothing';
 import StepDecoration from '../views/wizard/step-decoration';
 import StepBeautification from '../views/wizard/step-beautification';
 import StepConfirmation from '../views/wizard/step-confirmation';
+import ProductSelectorController from './product-selector-controller';
 
 export default class WizardController {
 	constructor(type, warehouseController) {
