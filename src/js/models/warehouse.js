@@ -19,15 +19,40 @@ export default class Warehouse {
 		} else {
 			product.id = this.products[this.products.length - 1].id + 1;
 		}
-		console.log('product :', product);
+
 		// Add to list
 		this.products.push(product);
 
 		// Save
-		let storageData = JSON.parse(localStorage.getItem(storageKey))[this.type];
-		storageData.products.push(product);
+		let storageData = JSON.parse(localStorage.getItem(storageKey));
+		storageData[this.type].products.push(product);
 		localStorage.setItem(storageKey, JSON.stringify(storageData));
 	}
 
-	getWarehouse() {}
+	updateProduct(product) {
+		for (const p of this.products) {
+			if (p.id === product.id) {
+				p.properties = product.properties;
+				p.notes = product.notes;
+				p.image = product.image;
+				p.drawing = product.drawing;
+
+				let storageData = JSON.parse(localStorage.getItem(storageKey));
+				storageData[this.type].products = this.products;
+				localStorage.setItem(storageKey, JSON.stringify(storageData));
+			}
+		}
+	}
+
+	getProduct(x, y) {
+		for (const product in this.products) {
+			if (this.products.hasOwnProperty(product)) {
+				const element = this.products[product];
+				if (element.id === this.warehouse[y][x]) {
+					return element;
+				}
+			}
+		}
+		return null;
+	}
 }
