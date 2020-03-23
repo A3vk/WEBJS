@@ -11,17 +11,8 @@ export default class CurrentView {
 
 		let temperatureDiv = document.createElement('div');
 		temperatureDiv.className = 'temperature';
+		temperatureDiv.innerText = `${data.temperature}℃`;
 
-		let highDiv = document.createElement('div');
-		highDiv.className = 'high';
-		highDiv.innerText = `${data.temperature.max}℃`;
-
-		let lowDiv = document.createElement('div');
-		lowDiv.className = 'low';
-		lowDiv.innerText = `${data.temperature.min}℃`;
-
-		temperatureDiv.appendChild(highDiv);
-		temperatureDiv.appendChild(lowDiv);
 		currentWeatherDiv.appendChild(temperatureDiv);
 
 		let conditionDiv = document.createElement('div');
