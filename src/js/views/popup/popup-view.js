@@ -3,9 +3,8 @@ import CanvasView from './canvas-view';
 import NoteView from './note-view';
 
 export default class PopupView {
-	constructor(warehouseController, gridController) {
+	constructor(warehouseController) {
 		this.warehouseController = warehouseController;
-		this.gridController = gridController;
 		this.propertyView = new PropertyView();
 		this.noteView = new NoteView();
 		this.canvasView = new CanvasView();
@@ -38,13 +37,11 @@ export default class PopupView {
 		this.product.drawing = canvases.drawing;
 
 		this.warehouseController.updateProduct(this.product);
-		this.gridController.UpdateSqaure(this.y, this.x);
 	}
 
 	open(x, y) {
 		this.product = this.warehouseController.getProduct(x, y);
-		this.y = y;
-		this.x = x;
+
 		if (this.product) {
 			// Initialize the modal
 			this.propertyView.render(this.product.properties);
