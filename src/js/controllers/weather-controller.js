@@ -37,10 +37,7 @@ export default class WeatherController {
 						icon: data.weather[0].icon,
 						description: data.weather[0].description
 					},
-					temperature: {
-						min: Math.round(data.main.temp_min),
-						max: Math.round(data.main.temp_max)
-					}
+					temperature: Math.round(data.main.temp)
 				};
 				this.currentWeather.render(weatherData);
 				this.weatherLocation.render(this.location);
