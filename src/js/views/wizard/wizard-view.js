@@ -1,4 +1,8 @@
 export default class WizardView {
+	constructor(controller) {
+		this.controller = controller;
+	}
+
 	render(inputs, last = false) {
 		let container = document.querySelector('.wizard-container');
 		container.innerHTML = '';
@@ -31,6 +35,14 @@ export default class WizardView {
 			// Render next step
 			this.onNext(data);
 		});
+
+		let closeButton = document.createElement('button');
+		closeButton.className = 'btn btn-danger close-button';
+		closeButton.innerText = 'X';
+		closeButton.addEventListener('click', () => {
+			this.controller.reset();
+		});
+		wizard.appendChild(closeButton);
 
 		inputs.forEach((input) => {
 			wizard.appendChild(input);

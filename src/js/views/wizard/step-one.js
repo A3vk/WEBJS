@@ -1,6 +1,10 @@
 import WizardView from './wizard-view';
 
 export default class StepOne extends WizardView {
+	constructor(controller) {
+		super(controller);
+	}
+
 	render() {
 		let inputs = [];
 
