@@ -19,7 +19,7 @@ export default class GridController {
 			this.warehouseController.saveProductPosition(this.type, id, y, x);
 		}
 
-		this.popupView = new PopupView(this.warehouseController);
+		this.popupView = new PopupView(this.warehouseController, this);
 
 		this.gridView.openPopup = (x, y) => {
 			this.popupView.open(x, y);
@@ -29,5 +29,9 @@ export default class GridController {
 			return this.warehouseController.getProductPosition(this.type, id);
 		}
 		this.gridView.render(grid);
+	}
+
+	UpdateSqaure(y, x){
+		this.gridView.UpdateSqaure(y, x);
 	}
 }
