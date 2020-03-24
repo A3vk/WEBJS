@@ -27,7 +27,7 @@
 			display: flex;
 			flex-direction: column;
 			border: 1px solid black;
-			padding: 50px;
+			padding: 25px;
 			border-radius: 25px;
 
 			.top {
@@ -36,6 +36,7 @@
 
 				.controls {
 					position: relative;
+					margin-left: 0;
 
 					.header {
 						font-size: xx-large;
@@ -75,11 +76,36 @@
 							}
 						}
 
-						.notes {
-							textarea {
-								width: 400px;
-								margin: 0 40px;
-								max-height: 475px;
+						.stack {
+							width: 550px;
+							.attribute-container {
+								max-height: 368px;
+								overflow-y: auto;
+
+								.attributes {
+									display: flex;
+									flex-direction: column;
+									margin-left: 25px;
+									text-align: left;
+
+									div {
+										display: flex;
+										div {
+											width: 44px;
+											height: 24px;
+											margin-left: 10px;
+											border: 1px solid grey;
+										}
+									}
+								}
+							}
+
+							.notes {
+								.notes-input {
+									width: 450px;
+									margin: 0 25px;
+									max-height: 175px;
+								}
 							}
 						}
 					}

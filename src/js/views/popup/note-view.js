@@ -1,8 +1,7 @@
 export default class NoteView {
 	constructor() {
-		// <div class="header">Opmerkingen</div>
-		// <textarea name="" id="" cols="30" rows="10"></textarea>
 		let container = document.querySelector('.notes');
+		container.innerHTML = '';
 
 		let header = document.createElement('div');
 		header.className = 'header';

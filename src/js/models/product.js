@@ -11,7 +11,8 @@ export default class Product {
 			name: this.name,
 			description: this.description,
 			purchasePrice: this.purchasePrice,
-			sellingPrice: this.sellingPrice,
+			sellingPriceEx: this.sellingPriceEx,
+			sellingPriceIn: this.sellingPriceIn,
 			minimalStock: this.minimalStock,
 			stock: this.stock
 		};

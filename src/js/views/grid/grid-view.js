@@ -64,13 +64,13 @@ export default class GridView {
 		return element;
 	}
 
-	updateSqaure(y, x) {
+	updateSquare(y, x) {
 		let row = this.gridContainer.children[y];
-		let sqaure = row.children[x];
-		sqaure.innerHTML = '';
+		let square = row.children[x];
+		square.innerHTML = '';
 
 		let image = this.getImage(y, x);
-		sqaure.appendChild(image);
+		square.appendChild(image);
 	}
 
 	getImage(y, x) {

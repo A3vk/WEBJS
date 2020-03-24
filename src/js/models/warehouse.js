@@ -29,6 +29,9 @@ export default class Warehouse {
 			product.id = this.products[this.products.length - 1].id + 1;
 		}
 
+		//sets the price inclusing btw
+		product.sellingPriceIn = product.sellingPriceEx * 1.21;
+
 		// Add temp image
 		let image = this.imageHelper.createImage();
 

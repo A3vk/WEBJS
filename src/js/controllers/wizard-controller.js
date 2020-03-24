@@ -9,16 +9,13 @@ import StepConfirmation from '../views/wizard/step-confirmation';
 import ProductSelectorController from './product-selector-controller';
 
 export default class WizardController {
-	constructor(type, warehouseController, calculatorController) {
+	constructor(warehouseController, calculatorController) {
 		this.warehouseController = warehouseController;
 		this.calculatorController = calculatorController;
 		this.isCalculatorOpen = false;
 
-		this.switchWarehouse(type);
-
 		this.container = document.querySelector('.wizard');
 		this.counter = 0;
-		this.next();
 	}
 
 	next() {
@@ -32,7 +29,7 @@ export default class WizardController {
 					break;
 				case 1:
 					this.product.purchasePrice = Math.round(data[0] * 100) / 100;
-					this.product.sellingPrice = Math.round(data[1] * 100) / 100;
+					this.product.sellingPriceEx = Math.round(data[1] * 100) / 100;
 					break;
 				case 2:
 					this.product.minimalStock = Math.round(data[0]);

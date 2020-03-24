@@ -20,7 +20,7 @@ export default class StepOne extends WizardView {
 		inputs.push(purchaseInput);
 
 		let sellingLabel = document.createElement('label');
-		sellingLabel.innerHTML = 'Verkoopprijs';
+		sellingLabel.innerHTML = 'Verkoopprijs Exclusief BTW';
 		inputs.push(sellingLabel);
 
 		let sellingInput = document.createElement('input');
