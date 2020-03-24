@@ -37,8 +37,6 @@ export default class Warehouse {
 		storageData[this.type].products.push(product);
 		localStorage.setItem(storageKey, JSON.stringify(storageData));
 
-		console.dir(product);
-
 		return product.id;
 	}
 

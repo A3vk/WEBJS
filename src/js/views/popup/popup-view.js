@@ -13,14 +13,15 @@ export default class PopupView {
 		this.attributeView = new AttributeView();
 
 		let modal = document.querySelector('.product-modal');
-		let container = modal.querySelector('.container');
 
 		// Add close event handler for a click on the outside of the modal
-		modal.addEventListener('click', (e) => {
-			if (e.target !== modal && e.target !== container) return;
-
-			this.saveAndClose(modal);
+		let newModal = modal.cloneNode(true);
+		newModal.addEventListener('click', (e) => {
+			let container = newModal.querySelector('.container');
+			if (e.target !== newModal && e.target !== container) return;
+			this.saveAndClose(newModal);
 		});
+		modal.parentNode.replaceChild(newModal, modal);
 
 		//Add close event handler for a click on the save button
 		let closeButton = document.querySelector('.product-modal .close-save');

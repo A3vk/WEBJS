@@ -169,17 +169,5 @@ export default class StorageHelper {
 		};
 
 		localStorage.setItem(storageKey, JSON.stringify(json));
-		console.info('Storage Initialized');
-	}
-
-	clear() {
-		localStorage.removeItem(storageKey);
-		console.info('Storage Cleared');
-		this.init();
-	}
-
-	inspect() {
-		let storageData = JSON.parse(localStorage.getItem(storageKey));
-		console.log('storageData :', storageData);
 	}
 }
