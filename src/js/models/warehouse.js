@@ -11,12 +11,6 @@ export default class Warehouse {
 		let storageData = JSON.parse(localStorage.getItem(storageKey))[this.type];
 		// Get product data
 		this.products = storageData.products;
-		this.products.forEach((product) => {
-			product.image = this.imageHelper.getImage(product.image);
-			if (product.drawing) {
-				product.drawing = this.imageHelper.getImage(product.drawing);
-			}
-		});
 		// Get the warehouse data
 		this.warehouse = storageData.warehouse;
 	}
@@ -29,25 +23,19 @@ export default class Warehouse {
 			product.id = this.products[this.products.length - 1].id + 1;
 		}
 
-		//sets the price inclusing btw
+		// Sets the price including btw
 		product.sellingPriceIn = product.sellingPriceEx * 1.21;
 
-		// Add temp image
-		let image = this.imageHelper.createImage();
+		// Create and save the image
+		product.image = this.imageHelper.createImage();
 
 		// Add to list
 		this.products.push(product);
 
-		// Save
+		// Store the product
 		let storageData = JSON.parse(localStorage.getItem(storageKey));
-
-		// Store the image separate
-		product.image = this.imageHelper.saveImage(image);
-
 		storageData[this.type].products.push(product);
 		localStorage.setItem(storageKey, JSON.stringify(storageData));
-
-		product.image = image;
 
 		return product.id;
 	}
@@ -66,11 +54,6 @@ export default class Warehouse {
 				let storageData = JSON.parse(localStorage.getItem(storageKey));
 				storageData[this.type].products[i] = p;
 				localStorage.setItem(storageKey, JSON.stringify(storageData));
-
-				p.image = this.imageHelper.getImage(p.image);
-				if (p.drawing) {
-					p.drawing = this.imageHelper.getImage(p.drawing);
-				}
 			}
 		}
 	}

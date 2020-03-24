@@ -1,5 +1,9 @@
+import ImageHelper from '../../helpers/image-helper';
+
 export default class ProductSelectorView {
 	render(products) {
+		let imageHelper = new ImageHelper();
+
 		let productSelectorContainer = document.querySelector('.product-selector');
 		productSelectorContainer.innerHTML = '';
 
@@ -33,18 +37,20 @@ export default class ProductSelectorView {
 		button.addEventListener('click', () => {
 			let image = document.createElement('img');
 
+			let source;
+
 			if (this.selectedProduct.children.length === 0 && this.selector.options.length !== 0) {
 				for (let i = 0; i < this.selector.options.length; i++) {
 					let option = this.selector.options[i];
 					if (option.selected === true) {
-						this.source = this.getProductImage(option.value);
+						source = this.getProductImage(option.value);
 						this.selector.removeChild(option);
 						image.id = option.value;
 					}
 				}
 				this.selectedProduct.innerHTML = '';
 
-				image.src = this.source;
+				image.src = imageHelper.getImage(source);
 
 				image.draggable = true;
 				image.ondragstart = (ev) => {
@@ -70,9 +76,9 @@ export default class ProductSelectorView {
 			let id = ev.dataTransfer.getData('text');
 
 			try {
-				let postion = this.getProductPosition(id);
-				if (postion != undefined) {
-					this.saveProductPosition(0, postion[0], postion[1]);
+				let position = this.getProductPosition(id);
+				if (position != undefined) {
+					this.saveProductPosition(0, position[0], position[1]);
 				}
 
 				this.selectedProduct.innerHTML = '';

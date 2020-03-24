@@ -1,5 +1,8 @@
+import ImageHelper from '../../helpers/image-helper';
+
 export default class GridView {
 	render(grid) {
+		this.imageHelper = new ImageHelper();
 		this.gridContainer = document.querySelector('.grid-container');
 		this.gridContainer.innerHTML = '';
 		this.grid = grid;
@@ -75,9 +78,7 @@ export default class GridView {
 
 	getImage(y, x) {
 		let image = document.createElement('img');
-		let source = this.getProductImage(this.grid[y][x]);
-
-		image.src = source;
+		image.src = this.imageHelper.getImage(this.getProductImage(this.grid[y][x]));
 		image.id = this.grid[y][x];
 		image.ondragstart = (ev) => {
 			ev.dataTransfer.setData('text', ev.target.id);
