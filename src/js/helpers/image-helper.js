@@ -3,30 +3,29 @@ import { storageKey } from './storage-helper';
 const crypto = require('crypto');
 
 export default class ImageHelper {
-	constructor() {
-		this.canvas = document.createElement('canvas');
-		this.context = this.canvas.getContext('2d');
-	}
+	constructor() {}
 
 	createImage(width = 55, height = 55) {
-		this.canvas.height = height;
-		this.canvas.width = width;
+		let canvas = document.createElement('canvas');
+		let context = canvas.getContext('2d');
+		canvas.height = height;
+		canvas.width = width;
 
-		var imageData = this.context.createImageData(width, height);
-		var red = (Math.random() * 256) | 0;
-		var green = (Math.random() * 256) | 0;
-		var blue = (Math.random() * 256) | 0;
+		let imageData = context.createImageData(width, height);
+		let red = (Math.random() * 256) | 0;
+		let green = (Math.random() * 256) | 0;
+		let blue = (Math.random() * 256) | 0;
 
-		var data = imageData.data;
-		for (var i = 0; i < height * width; i++) {
+		let data = imageData.data;
+		for (let i = 0; i < height * width; i++) {
 			data[i * 4 + 0] = red;
 			data[i * 4 + 1] = green;
 			data[i * 4 + 2] = blue;
 			data[i * 4 + 3] = 255;
 		}
-		this.context.putImageData(imageData, 0, 0);
+		context.putImageData(imageData, 0, 0);
 
-		return this.canvas.toDataURL();
+		return this.saveImage(canvas.toDataURL());
 	}
 
 	getKey(image) {

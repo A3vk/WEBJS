@@ -1,5 +1,9 @@
+import ImageHelper from '../../helpers/image-helper';
+
 export default class CanvasView {
 	constructor() {
+		this.imageHelper = new ImageHelper();
+
 		this.imageCanvas = document.querySelector('.canvas-container #image-canvas');
 		this.imageContext = this.imageCanvas.getContext('2d');
 		this.drawingCanvas = document.querySelector('.canvas-container #drawing-canvas');
@@ -74,7 +78,7 @@ export default class CanvasView {
 				this.imageContext.drawImage(imageImg, 0, 0);
 			};
 			imageImg.crossOrigin = 'Anonymous';
-			imageImg.src = image;
+			imageImg.src = this.imageHelper.getImage(image);
 		}
 		if (drawing) {
 			let drawingImg = new Image();
@@ -83,7 +87,7 @@ export default class CanvasView {
 				this.drawingCanvas.height = drawingImg.height;
 				this.drawingContext.drawImage(drawingImg, 0, 0);
 			};
-			drawingImg.src = drawing;
+			drawingImg.src = this.imageHelper.getImage(drawing);
 		} else {
 			this.drawingContext.clearRect(0, 0, this.drawingContext.canvas.width, this.drawingContext.canvas.height);
 		}

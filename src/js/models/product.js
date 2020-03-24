@@ -14,7 +14,11 @@ export default class Product {
 			sellingPriceEx: this.sellingPriceEx,
 			sellingPriceIn: this.sellingPriceIn,
 			minimalStock: this.minimalStock,
-			stock: this.stock
+			stock: this.stock,
+			properties: this.properties,
+			notes: this.notes,
+			image: this.image,
+			drawing: this.drawing
 		};
 
 		// Extra data

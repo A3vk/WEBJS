@@ -15,9 +15,7 @@ export default class StorageHelper {
 		let images = [];
 
 		for (let i = 0; i < 6; i++) {
-			let image = this.imageHelper.createImage();
-			let key = this.imageHelper.saveImage(image);
-			images.push(key);
+			images.push(this.imageHelper.createImage());
 		}
 
 		const json = {
@@ -171,17 +169,5 @@ export default class StorageHelper {
 		};
 
 		localStorage.setItem(storageKey, JSON.stringify(json));
-		console.info('Storage Initialized');
-	}
-
-	clear() {
-		localStorage.removeItem(storageKey);
-		console.info('Storage Cleared');
-		this.init();
-	}
-
-	inspect() {
-		let storageData = JSON.parse(localStorage.getItem(storageKey));
-		console.log('storageData :', storageData);
 	}
 }
