@@ -1,6 +1,4 @@
 export default class ProductSelectorView {
-	constructor() {}
-
 	render(products) {
 		let productSelectorContainer = document.querySelector('.product-selector');
 		productSelectorContainer.innerHTML = '';
