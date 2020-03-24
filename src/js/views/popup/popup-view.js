@@ -14,15 +14,6 @@ export default class PopupView {
 
 		let modal = document.querySelector('.product-modal');
 
-		// Add close event handler for a click on the outside of the modal
-		let newModal = modal.cloneNode(true);
-		newModal.addEventListener('click', (e) => {
-			let container = newModal.querySelector('.container');
-			if (e.target !== newModal && e.target !== container) return;
-			this.saveAndClose(newModal);
-		});
-		modal.parentNode.replaceChild(newModal, modal);
-
 		//Add close event handler for a click on the save button
 		let closeButton = document.querySelector('.product-modal .close-save');
 		let newCloseButton = closeButton.cloneNode(true);
