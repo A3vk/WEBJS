@@ -1,6 +1,6 @@
-.content{
+.content {
 	.grid-container {
-		flex: 0 46.5%;
+		flex: 0 45.5%;
 		.grid-square {
 			border-style: solid;
 			border-width: 1px;
@@ -8,16 +8,15 @@
 			min-height: 55px;
 			max-height: 55px;
 			max-width: 55px;
-	
-			img{
+
+			img {
 				height: 55px;
 				width: 55px;
 			}
 		}
-	
+
 		.grid-square.blocked {
 			background-image: repeating-linear-gradient(45deg, $yellow, $yellow 10px, $red 10px, $red 20px);
 		}
 	}
-	
 }

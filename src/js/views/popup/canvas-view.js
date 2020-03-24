@@ -8,8 +8,8 @@ export default class CanvasView {
 		let colorSelector = document.querySelector('#color-selector');
 		let strengthSelector = document.querySelector('#strength-selector');
 
-		this.drawingCanvas.width = 1000;
-		this.drawingCanvas.height = 1000;
+		this.drawingCanvas.width = 500;
+		this.drawingCanvas.height = 500;
 
 		imageSelector.addEventListener('change', (e) => {
 			let reader = new FileReader();
@@ -73,6 +73,7 @@ export default class CanvasView {
 				this.imageCanvas.height = imageImg.height;
 				this.imageContext.drawImage(imageImg, 0, 0);
 			};
+			imageImg.crossOrigin = 'Anonymous';
 			imageImg.src = image;
 		}
 		if (drawing) {
@@ -83,6 +84,8 @@ export default class CanvasView {
 				this.drawingContext.drawImage(drawingImg, 0, 0);
 			};
 			drawingImg.src = drawing;
+		} else {
+			this.drawingContext.clearRect(0, 0, this.drawingContext.canvas.width, this.drawingContext.canvas.height);
 		}
 	}
 
