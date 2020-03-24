@@ -53,16 +53,16 @@ export default class AtributeView{
 
         switch (data['type']) {
             case 'clothing':
-                let div = document.createElement('div');
-                let color = document.createElement('label');
-                color.innerHTML = `Kleur  : `;
-                let colorDiv = document.createElement('div');
-                colorDiv.style.backgroundColor = data['color'];
+                let clothingDiv = document.createElement('div');
+                let clothingColor = document.createElement('label');
+                clothingColor.innerHTML = `Kleur  : `;
+                let clothingColorDiv = document.createElement('div');
+                clothingColorDiv.style.backgroundColor = data['color'];
 
-                div.appendChild(color);
-                div.appendChild(colorDiv);
+                clothingDiv.appendChild(clothingColor);
+                clothingDiv.appendChild(clothingColorDiv);
 
-                atributes.appendChild(div);
+                atributes.appendChild(clothingDiv);
 
                 let clothinsize = document.createElement('label');
                 clothinsize.innerHTML = `Maat  : ${data['size']}`;
@@ -81,17 +81,23 @@ export default class AtributeView{
                 let beautificationSize = document.createElement('label');
                 beautification.innerHTML = `Afmetingen  : ${data['size']}`;
 
-                atributes.appendChild(beautification);
+                atributes.appendChild(beautificationSize);
 
                 let beautificationDiv  = document.createElement('div');
                 let beautificationColor = document.createElement('label');
                 beautificationColor.innerHTML = `Kleur  : `;
-                let beautificationcolorDiv = document.createElement('div');
-                beautificationcolorDiv.style.backgroundColor = data['color'];
+                let beautificationColorDiv = document.createElement('div');
+                beautificationColorDiv.style.backgroundColor = data['color'];
 
-                atributes.appendChild(colorDiv);
+                beautificationDiv.appendChild(beautificationColor);
+                beautificationDiv.appendChild(beautificationColorDiv);
 
-                
+                atributes.appendChild(beautificationDiv);
+
+                let pieces = document.createElement('label');
+                pieces.innerHTML = `Stuks Per Verpaking  : ${data['pieces']}`;
+
+                atributes.appendChild(pieces);
 
             default:
                 break;
