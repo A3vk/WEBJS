@@ -44,6 +44,14 @@ export default class WizardView {
 		});
 		wizard.appendChild(closeButton);
 
+		let calculatorButton = document.createElement('button');
+		calculatorButton.className = 'btn btn-info calculator-button';
+		calculatorButton.innerHTML = '<i class="fas fa-calculator"></i>';
+		calculatorButton.addEventListener('click', () => {
+			this.controller.toggleCalculator();
+		});
+		wizard.appendChild(calculatorButton);
+
 		inputs.forEach((input) => {
 			wizard.appendChild(input);
 		});
