@@ -1,6 +1,7 @@
 export default class NoteView {
 	constructor() {
 		let container = document.querySelector('.notes');
+		container.innerHTML = '';
 
 		let header = document.createElement('div');
 		header.className = 'header';

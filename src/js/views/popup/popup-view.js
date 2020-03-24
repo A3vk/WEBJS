@@ -1,7 +1,7 @@
 import PropertyView from './property-view';
 import CanvasView from './canvas-view';
 import NoteView from './note-view';
-import AtributeView from './atribute-view';
+import AttributeView from './attribute-view';
 
 export default class PopupView {
 	constructor(warehouseController, gridController) {
@@ -10,7 +10,7 @@ export default class PopupView {
 		this.propertyView = new PropertyView();
 		this.noteView = new NoteView();
 		this.canvasView = new CanvasView();
-		this.atributeView = new AtributeView();
+		this.attributeView = new AttributeView();
 
 		let modal = document.querySelector('.product-modal');
 		let container = modal.querySelector('.container');
@@ -40,21 +40,21 @@ export default class PopupView {
 		this.product.drawing = canvases.drawing;
 
 		this.warehouseController.updateProduct(this.product);
-		this.gridController.updateSqaure(this.y, this.x);
+		this.gridController.updateSquare(this.y, this.x);
 	}
 
 	open(x, y) {
 		this.y = y;
 		this.x = x;
 		this.product = this.warehouseController.getProduct(x, y);
-		let atributes = this.getAtributes(this.product);
+		let attributes = this.getAttributes(this.product);
 
 		if (this.product) {
 			// Initialize the modal
 			this.propertyView.render(this.product.properties);
 			this.noteView.render(this.product.notes);
 			this.canvasView.render(this.product.image, this.product.drawing);
-			this.atributeView.render(atributes);
+			this.attributeView.render(attributes);
 
 			let modal = document.querySelector('.product-modal');
 
@@ -62,13 +62,13 @@ export default class PopupView {
 		}
 	}
 
-	getAtributes(product) {
-		let atributes = {};
-		for (let atribute in product) {
-			if (atribute === 'image') {
-				return atributes;
+	getAttributes(product) {
+		let attributes = {};
+		for (let attribute in product) {
+			if (attribute === 'image') {
+				return attributes;
 			}
-			atributes[atribute] = product[atribute];
+			attributes[attribute] = product[attribute];
 		}
 	}
 }

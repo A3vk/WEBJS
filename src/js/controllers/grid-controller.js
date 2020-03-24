@@ -13,11 +13,11 @@ export default class GridController {
 
 		this.gridView.getProductImage = (id) => {
 			return this.warehouseController.getProductImage(this.type, id);
-		}
+		};
 
 		this.gridView.saveProductPosition = (id, y, x) => {
 			this.warehouseController.saveProductPosition(this.type, id, y, x);
-		}
+		};
 
 		this.popupView = new PopupView(this.warehouseController, this);
 
@@ -27,11 +27,11 @@ export default class GridController {
 
 		this.gridView.getProductPosition = (id) => {
 			return this.warehouseController.getProductPosition(this.type, id);
-		}
+		};
 		this.gridView.render(grid);
 	}
 
-	updateSqaure(y, x){
-		this.gridView.updateSqaure(y, x);
+	updateSquare(y, x) {
+		this.gridView.updateSquare(y, x);
 	}
 }
