@@ -27,21 +27,21 @@ export default class WarehouseController {
 		return types;
 	}
 
-	getProductNamesAndId(type){
+	getProductNamesAndId(type) {
 		let products = {};
 
-		this.warehouses[type].products.forEach(p => {
+		this.warehouses[type].products.forEach((p) => {
 			products[p.id] = p.name;
 		});
 		return products;
 	}
 
-	getProductName(type, id){
-		for (let i  in this.warehouses[type].products){
-			if (this.warehouses[type].products[i].id == id){
+	getProductName(type, id) {
+		for (let i in this.warehouses[type].products) {
+			if (this.warehouses[type].products[i].id == id) {
 				return this.warehouses[type].products[i].name;
 			}
-		};
+		}
 		return '';
 	}
 
@@ -50,15 +50,15 @@ export default class WarehouseController {
 		return this.warehouses[type].warehouse;
 	}
 
-	getProductImage(type, id ){
-		for (let i  in this.warehouses[type].products){
-			if (this.warehouses[type].products[i].id == id){
+	getProductImage(type, id) {
+		for (let i in this.warehouses[type].products) {
+			if (this.warehouses[type].products[i].id == id) {
 				return this.warehouses[type].products[i].image;
 			}
-		};
+		}
 	}
 
-	saveProductPosition(type, id, y, x){
+	saveProductPosition(type, id, y, x) {
 		this.warehouses[type].saveProductPosition(id, y, x);
 	}
 
@@ -66,7 +66,7 @@ export default class WarehouseController {
 		return this.warehouses[this.currentType].getProduct(x, y);
 	}
 
-	getProductPosition(type, id){
+	getProductPosition(type, id) {
 		return this.warehouses[type].getProductPosition(id);
 	}
 }
