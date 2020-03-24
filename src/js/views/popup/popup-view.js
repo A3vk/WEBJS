@@ -24,14 +24,16 @@ export default class PopupView {
 
 		//Add close event handler for a click on the save button
 		let closeButton = document.querySelector('.product-modal .close-save');
-		closeButton.addEventListener('click', () => {
+		let newCloseButton = closeButton.cloneNode(true);
+		newCloseButton.addEventListener('click', () => {
 			this.saveAndClose(modal);
 		});
+		closeButton.parentNode.replaceChild(newCloseButton, closeButton);
 	}
 
 	saveAndClose(modal) {
 		modal.classList.add('hidden');
-		// Save the data in the modal --> image and drawn damage
+		// Save the data in the modal
 		this.product.properties = this.propertyView.getProperties();
 		this.product.notes = this.noteView.getNotes();
 

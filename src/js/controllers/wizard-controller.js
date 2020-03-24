@@ -9,16 +9,13 @@ import StepConfirmation from '../views/wizard/step-confirmation';
 import ProductSelectorController from './product-selector-controller';
 
 export default class WizardController {
-	constructor(type, warehouseController, calculatorController) {
+	constructor(warehouseController, calculatorController) {
 		this.warehouseController = warehouseController;
 		this.calculatorController = calculatorController;
 		this.isCalculatorOpen = false;
 
-		this.switchWarehouse(type);
-
 		this.container = document.querySelector('.wizard');
 		this.counter = 0;
-		this.next();
 	}
 
 	next() {

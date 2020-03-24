@@ -2,7 +2,7 @@ import { storageKey } from '../../helpers/storage-helper';
 
 export default class AttributeView {
 	render(data) {
-		this.attributeContainer = document.querySelector('.atribute-container');
+		this.attributeContainer = document.querySelector('.attribute-container');
 		this.attributeContainer.innerHTML = '';
 
 		let header = document.createElement('div');
@@ -10,7 +10,7 @@ export default class AttributeView {
 		header.className = 'header';
 
 		let attributes = document.createElement('div');
-		attributes.className = 'atributes';
+		attributes.className = 'attributes';
 
 		this.attributeContainer.append(header);
 
