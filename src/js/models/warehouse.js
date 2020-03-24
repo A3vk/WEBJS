@@ -19,7 +19,11 @@ export default class Warehouse {
 		} else {
 			product.id = this.products[this.products.length - 1].id + 1;
 		}
+		//sets image to placeholder
 		product.image = 'https://www.colorbook.io/imagecreator.php?width=55&height=55?';
+
+		//sets the price inclusing btw
+		product.sellingPriceIn = product.sellingPriceEx * 1.21;
 		// Add to list
 		this.products.push(product);
 

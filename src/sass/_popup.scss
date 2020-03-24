@@ -82,10 +82,40 @@
 								max-height: 475px;
 							}
 						}
+
+						.atribute-container{
+							display: flex;
+							flex-direction: column;
+
+							.atributes{
+								display: flex;
+								flex-direction: column;
+								
+								div{
+									display: flex;
+									justify-content: center;
+									justify-items: center;
+
+									div{
+										width: 44px;
+										height: 24px;
+										margin-left: 10px;
+										border: 1px solid black;
+									}
+									
+								}
+
+								border: 1px solid black;
+
+								label{
+
+								}
+							}
+						}
 					}
 
 					.image {
-						position: absolute;
+						// position: absolute;
 						bottom: 0;
 						width: 100%;
 

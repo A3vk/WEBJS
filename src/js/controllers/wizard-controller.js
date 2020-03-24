@@ -32,7 +32,7 @@ export default class WizardController {
 					break;
 				case 1:
 					this.product.purchasePrice = Math.round(data[0] * 100) / 100;
-					this.product.sellingPrice = Math.round(data[1] * 100) / 100;
+					this.product.sellingPriceEx = Math.round(data[1] * 100) / 100;
 					break;
 				case 2:
 					this.product.minimalStock = Math.round(data[0]);
