@@ -30,7 +30,7 @@ export default class Warehouse {
 		}
 
 		// Add temp image
-		product.image = this.imageHelper.createImage();
+		let image = this.imageHelper.createImage();
 
 		// Add to list
 		this.products.push(product);
@@ -39,10 +39,12 @@ export default class Warehouse {
 		let storageData = JSON.parse(localStorage.getItem(storageKey));
 
 		// Store the image separate
-		product.image = this.imageHelper.saveImage(product.image);
+		product.image = this.imageHelper.saveImage(image);
 
 		storageData[this.type].products.push(product);
 		localStorage.setItem(storageKey, JSON.stringify(storageData));
+
+		product.image = image;
 
 		return product.id;
 	}
