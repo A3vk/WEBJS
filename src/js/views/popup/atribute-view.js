@@ -14,9 +14,6 @@ export default class AtributeView {
 
 		this.atributeContainer.append(header);
 
-		let name = document.createElement('label');
-		name.innerHTML = `Naam : ${data['name']}`;
-
         let name = document.createElement('label');
         name.innerHTML = `Naam : ${data.name}`;
 
