@@ -6,6 +6,7 @@ import WarehouseController from './controllers/warehouse-controller';
 import ProductSelectorController from './controllers/product-selector-controller';
 import WeatherController from './controllers/weather-controller';
 import CalculatorController from './controllers/calculator-controller';
+import ImageHelper from './helpers/image-helper';
 
 // Give it to the window so you can access it from the console
 // TODO: This needs to be changed when released
@@ -14,11 +15,8 @@ let warehouseController = new WarehouseController();
 let gridController = new GridController(warehouseController);
 let calculatorController = new CalculatorController();
 let wizardController = new WizardController('clothing', warehouseController, calculatorController);
-let weatherController = new WeatherController();
+new WeatherController();
 let productSelectorController = new ProductSelectorController(warehouseController);
-let tabController = new TabController(
-	warehouseController.getTypes(),
-	wizardController,
-	gridController,
-	productSelectorController
-);
+new TabController(warehouseController.getTypes(), wizardController, gridController, productSelectorController);
+
+new ImageHelper().clearUnusedImages();

@@ -16,7 +16,7 @@ export default class GridView {
 					if (this.grid[y][x] !== 0) {
 						let image = this.getImage(y, x);
 
-						let selector = document.querySelector('.product-selector > select')
+						let selector = document.querySelector('.product-selector > select');
 						for (let i = 0; i < selector.options.length; i++) {
 							let option = selector[i];
 							if (option.value == this.grid[y][x]) {
@@ -31,7 +31,7 @@ export default class GridView {
 					});
 					square.ondragover = (ev) => {
 						ev.preventDefault();
-					}
+					};
 
 					square.ondrop = (ev) => {
 						ev.preventDefault();
@@ -46,11 +46,10 @@ export default class GridView {
 							}
 							ev.target.appendChild(document.getElementById(id));
 							this.saveProductPosition(id, y, x);
-						}
-						catch{
+						} catch (err) {
 							return;
 						}
-					}
+					};
 				}
 				row.append(square);
 			}
@@ -79,10 +78,10 @@ export default class GridView {
 		let source = this.getProductImage(this.grid[y][x]);
 
 		image.src = source;
-		image.id = this.grid[y][x]
+		image.id = this.grid[y][x];
 		image.ondragstart = (ev) => {
-			ev.dataTransfer.setData("text", ev.target.id);
-		}
+			ev.dataTransfer.setData('text', ev.target.id);
+		};
 		return image;
 	}
 }
