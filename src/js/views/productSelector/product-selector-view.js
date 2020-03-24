@@ -43,7 +43,7 @@ export default class ProductSelectorView {
                 for (let i = 0; i < this.selector.options.length; i++) {
                     let option = this.selector.options[i];
                     if (option.selected === true) {
-                        this.source = this.getProductImage(option.value) + '?' + new Date().getTime();
+                        this.source = this.getProductImage(option.value);   
                         this.selector.removeChild(option);
                         image.id = option.value;
                     }
