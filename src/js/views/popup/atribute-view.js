@@ -1,18 +1,21 @@
-import { storageKey } from "../../helpers/storage-helper";
+import { storageKey } from '../../helpers/storage-helper';
 
-export default class AtributeView{
-    render(data){
-        this.atributeContainer = document.querySelector('.atribute-container');
-        this.atributeContainer.innerHTML = '';
+export default class AtributeView {
+	render(data) {
+		this.atributeContainer = document.querySelector('.atribute-container');
+		this.atributeContainer.innerHTML = '';
 
-        let header = document.createElement('div');
-        header.innerHTML = 'Informatie';
-        header.className = 'header';
+		let header = document.createElement('div');
+		header.innerHTML = 'Informatie';
+		header.className = 'header';
 
-        let atributes = document.createElement('div');
-        atributes.className = 'atributes';
+		let atributes = document.createElement('div');
+		atributes.className = 'atributes';
 
-        this.atributeContainer.append(header);
+		this.atributeContainer.append(header);
+
+		let name = document.createElement('label');
+		name.innerHTML = `Naam : ${data['name']}`;
 
         let name = document.createElement('label');
         name.innerHTML = `Naam : ${data.name}`;
@@ -38,14 +41,14 @@ export default class AtributeView{
         let stock = document.createElement('label');
         stock.innerHTML = `Huidige Vooraad  : ${data.stock}`;
 
-        atributes.appendChild(name);
-        atributes.appendChild(type);
-        atributes.appendChild(description);
-        atributes.appendChild(purchasePrice);
-        atributes.appendChild(sellingPriceEx);
-        atributes.appendChild(sellingPriceIn);
-        atributes.appendChild(minamalStock);
-        atributes.appendChild(stock);
+		atributes.appendChild(name);
+		atributes.appendChild(type);
+		atributes.appendChild(description);
+		atributes.appendChild(purchasePrice);
+		atributes.appendChild(sellingPriceEx);
+		atributes.appendChild(sellingPriceIn);
+		atributes.appendChild(minamalStock);
+		atributes.appendChild(stock);
 
         switch (data['type']) {
             case 'clothing':
@@ -56,29 +59,29 @@ export default class AtributeView{
                 clothingColorDiv.style.backgroundColor = data.color;
                 clothingColorDiv.className = 'color-div'
 
-                clothingDiv.appendChild(clothingColor);
-                clothingDiv.appendChild(clothingColorDiv);
+				clothingDiv.appendChild(clothingColor);
+				clothingDiv.appendChild(clothingColorDiv);
 
-                atributes.appendChild(clothingDiv);
+				atributes.appendChild(clothingDiv);
 
                 let clothinsize = document.createElement('label');
                 clothinsize.innerHTML = `Maat  : ${data.size}`;
 
-                atributes.appendChild(clothinsize);
-                break;
+				atributes.appendChild(clothinsize);
+				break;
 
             case 'decoration':
                 let weight = document.createElement('label');
                 weight.innerHTML = `Gewicht  : ${data.weight}Kg`;
 
-                atributes.appendChild(weight);
-                break;
+				atributes.appendChild(weight);
+				break;
 
             case 'beautification':
                 let beautificationSize = document.createElement('label');
                 beautificationSize.innerHTML = `Afmetingen  : ${data.size}`;
 
-                atributes.appendChild(beautificationSize);
+				atributes.appendChild(beautificationSize);
 
                 let beautificationDiv  = document.createElement('div');
                 let beautificationColor = document.createElement('label');
@@ -87,18 +90,15 @@ export default class AtributeView{
                 beautificationColorDiv.style.backgroundColor = data.color;
                 beautificationColorDiv.className = 'color-div';
 
-                beautificationDiv.appendChild(beautificationColor);
-                beautificationDiv.appendChild(beautificationColorDiv);
+				beautificationDiv.appendChild(beautificationColor);
+				beautificationDiv.appendChild(beautificationColorDiv);
 
-                atributes.appendChild(beautificationDiv);
+				atributes.appendChild(beautificationDiv);
 
                 let pieces = document.createElement('label');
                 pieces.innerHTML = `Stuks Per Verpaking  : ${data.pieces}`;
 
-                atributes.appendChild(pieces);
-
-            default:
-                break;
+				atributes.appendChild(pieces);
         }
         this.atributeContainer.append(atributes);
     }

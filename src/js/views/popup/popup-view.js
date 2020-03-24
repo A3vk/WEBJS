@@ -62,11 +62,11 @@ export default class PopupView {
 		}
 	}
 
-	getAtributes(product){
+	getAtributes(product) {
 		let atributes = {};
-		for (let atribute in product){
-			if (atribute === 'image'){
-				return atributes
+		for (let atribute in product) {
+			if (atribute === 'image') {
+				return atributes;
 			}
 			atributes[atribute] = product[atribute];
 		}
