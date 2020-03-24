@@ -7,12 +7,12 @@ export default class WarehouseController {
 			decoration: new Warehouse('decoration'),
 			beautification: new Warehouse('beautification')
 		};
-
 		this.currentType = 'clothing';
 	}
 
 	saveProduct(product) {
-		this.warehouses[this.currentType].saveProduct(product);
+		let id = this.warehouses[this.currentType].saveProduct(product);
+		this.productSelectorController.updateSelector(id);
 	}
 
 	updateProduct(product) {
@@ -53,9 +53,6 @@ export default class WarehouseController {
 	getProductImage(type, id ){
 		for (let i  in this.warehouses[type].products){
 			if (this.warehouses[type].products[i].id == id){
-				return this.warehouses[type].products[i].image;
-			}
-			else if (this.warehouses[type].products[i].id == id){
 				return this.warehouses[type].products[i].image;
 			}
 		};

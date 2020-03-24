@@ -19,7 +19,7 @@ export default class Warehouse {
 		} else {
 			product.id = this.products[this.products.length - 1].id + 1;
 		}
-
+		product.image = 'https://www.colorbook.io/imagecreator.php?width=55&height=55?';
 		// Add to list
 		this.products.push(product);
 
@@ -27,6 +27,8 @@ export default class Warehouse {
 		let storageData = JSON.parse(localStorage.getItem(storageKey));
 		storageData[this.type].products.push(product);
 		localStorage.setItem(storageKey, JSON.stringify(storageData));
+
+		return product.id;
 	}
 
 	updateProduct(product) {
