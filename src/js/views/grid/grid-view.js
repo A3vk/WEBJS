@@ -79,6 +79,9 @@ export default class GridView {
 	getImage(y, x) {
 		let image = document.createElement('img');
 		image.src = this.imageHelper.getImage(this.getProductImage(this.grid[y][x]));
+		// console.dir(this.grid[y][x]);
+		// console.dir(this.getProductImage(this.grid[y][x]));
+		// console.dir(image.src);
 		image.id = this.grid[y][x];
 		image.ondragstart = (ev) => {
 			ev.dataTransfer.setData('text', ev.target.id);
